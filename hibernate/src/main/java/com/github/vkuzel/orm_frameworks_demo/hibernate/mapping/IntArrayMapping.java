@@ -6,8 +6,6 @@ import org.hibernate.usertype.UserType;
 
 import java.io.Serializable;
 import java.sql.*;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * For the sake of brevity this class can map one dimensional integer arrays
@@ -23,7 +21,7 @@ public class IntArrayMapping implements UserType {
 
     @Override
     public Class returnedClass() {
-        return List.class;
+        return Integer[].class;
     }
 
 
@@ -33,8 +31,7 @@ public class IntArrayMapping implements UserType {
             return null;
         }
 
-        Integer[] array = (Integer[]) rs.getArray(names[0]).getArray();
-        return Arrays.asList(array);
+        return rs.getArray(names[0]).getArray();
     }
 
     @Override
@@ -42,7 +39,7 @@ public class IntArrayMapping implements UserType {
         if (value == null) {
             st.setNull(index, Types.ARRAY);
         } else {
-            Array array = session.connection().createArrayOf("int", ((List) value).toArray());
+            Array array = session.connection().createArrayOf("int", (Integer[]) value);
             st.setArray(index, array);
         }
     }

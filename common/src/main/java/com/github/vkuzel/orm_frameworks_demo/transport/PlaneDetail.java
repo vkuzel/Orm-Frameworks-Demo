@@ -1,9 +1,6 @@
 package com.github.vkuzel.orm_frameworks_demo.transport;
 
-import com.github.vkuzel.orm_frameworks_demo.common.Utils;
-
 import java.time.LocalDateTime;
-import java.util.List;
 
 public interface PlaneDetail {
 
@@ -23,9 +20,9 @@ public interface PlaneDetail {
 
     void setPlaneType(PlaneType planeType);
 
-    List<Integer> getSeatsLayout();
+    Integer[] getSeatsLayout();
 
-    void setSeatsLayout(List<Integer> seatsLayout);
+    void setSeatsLayout(Integer[] seatsLayout);
 
     LocalDateTime getCreatedAt();
 

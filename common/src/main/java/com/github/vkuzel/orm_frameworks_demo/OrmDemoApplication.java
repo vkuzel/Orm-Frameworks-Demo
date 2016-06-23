@@ -3,7 +3,6 @@ package com.github.vkuzel.orm_frameworks_demo;
 import com.github.vkuzel.orm_frameworks_demo.common.Utils;
 import com.github.vkuzel.orm_frameworks_demo.service.AirlinesService;
 import com.github.vkuzel.orm_frameworks_demo.transport.*;
-import com.google.common.collect.ImmutableList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -44,7 +43,7 @@ public class OrmDemoApplication implements CommandLineRunner {
         newPlane.setName("Embraer 190");
         newPlane.setDimensions(new PlaneDimensions(36.24, 28.72, 10.57));
         newPlane.setPlaneType(PlaneType.JET);
-        newPlane.setSeatsLayout(ImmutableList.of(2, 2));
+        newPlane.setSeatsLayout(new Integer[]{2, 2});
 
         PlaneDetail savedPlane = airlinesService.createPlane(newPlane);
         assertNotNull(savedPlane);

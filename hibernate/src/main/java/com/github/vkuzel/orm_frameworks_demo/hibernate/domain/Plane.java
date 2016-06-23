@@ -12,7 +12,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity(name = "planes")
 @EntityListeners(AuditingEntityListener.class)
@@ -28,7 +27,7 @@ public class Plane implements PlaneDetail {
     @Type(type = "com.github.vkuzel.orm_frameworks_demo.hibernate.mapping.PlaneTypeMapping")
     private PlaneType planeType;
     @Type(type = "com.github.vkuzel.orm_frameworks_demo.hibernate.mapping.IntArrayMapping")
-    private List<Integer> seatsLayout;
+    private Integer[] seatsLayout;
     @CreatedDate
     @Type(type = "com.github.vkuzel.orm_frameworks_demo.hibernate.mapping.LocalDateTimeMapping")
     private LocalDateTime createdAt;
@@ -74,11 +73,11 @@ public class Plane implements PlaneDetail {
         this.planeType = planeType;
     }
 
-    public List<Integer> getSeatsLayout() {
+    public Integer[] getSeatsLayout() {
         return seatsLayout;
     }
 
-    public void setSeatsLayout(List<Integer> seatsLayout) {
+    public void setSeatsLayout(Integer[] seatsLayout) {
         this.seatsLayout = seatsLayout;
     }
 
