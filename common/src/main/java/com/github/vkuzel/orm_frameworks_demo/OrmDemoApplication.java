@@ -81,8 +81,8 @@ public class OrmDemoApplication implements CommandLineRunner {
         assertTrue(operatorsPage.getTotalElements() == 3);
         assertTrue(operatorsPage.getTotalPages() == 2);
         List<OperatorDetail> operators = operatorsPage.getContent();
-        assertEquals(operators.get(0).getName().get("en"), "Lufthansa");
-        assertEquals(operators.get(1).getName().get("en"), "Emirates");
+        assertEquals("Lufthansa", operators.get(0).getName().get("en").textValue());
+        assertEquals("Emirates", operators.get(1).getName().get("en").textValue());
 
         String registrationNumber = "D-ERAA";
         RegistrationDetail newRegistration = airlinesService.registerNewPlane(updatedPlane, operator, registrationNumber);

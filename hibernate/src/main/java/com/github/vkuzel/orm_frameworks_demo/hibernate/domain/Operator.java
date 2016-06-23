@@ -1,10 +1,10 @@
 package com.github.vkuzel.orm_frameworks_demo.hibernate.domain;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.github.vkuzel.orm_frameworks_demo.transport.OperatorDetail;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.Map;
 
 @Entity(name = "operators")
 public class Operator implements OperatorDetail {
@@ -14,7 +14,7 @@ public class Operator implements OperatorDetail {
     @SequenceGenerator(name = "operators_seq_gen", sequenceName = "operators_id_seq")
     private Long id;
     @Type(type="com.github.vkuzel.orm_frameworks_demo.hibernate.mapping.JsonMapping")
-    private Map<String, String> name;
+    private JsonNode name;
 
     public Long getId() {
         return id;
@@ -24,11 +24,11 @@ public class Operator implements OperatorDetail {
         this.id = id;
     }
 
-    public Map<String, String> getName() {
+    public JsonNode getName() {
         return name;
     }
 
-    public void setName(Map<String, String> name) {
+    public void setName(JsonNode name) {
         this.name = name;
     }
 }

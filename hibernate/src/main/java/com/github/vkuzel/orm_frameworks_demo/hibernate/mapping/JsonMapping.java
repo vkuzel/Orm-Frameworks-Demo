@@ -1,6 +1,7 @@
 package com.github.vkuzel.orm_frameworks_demo.hibernate.mapping;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
@@ -13,7 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.Map;
 
 public class JsonMapping implements UserType {
 
@@ -26,7 +26,7 @@ public class JsonMapping implements UserType {
 
     @Override
     public Class returnedClass() {
-        return Map.class;
+        return JsonNode.class;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class JsonMapping implements UserType {
         if (value == null) {
             st.setNull(index, Types.OTHER);
         } else {
-            String json = toJsonString((Map) value);
+            String json = toJsonString((JsonNode) value);
 
             PGobject pGobject = new PGobject();
             pGobject.setValue(json);
@@ -53,17 +53,17 @@ public class JsonMapping implements UserType {
         }
     }
 
-    private String toJsonString(Map map) {
+    private String toJsonString(JsonNode node) {
         try {
-            return JSON_MAPPER.writeValueAsString(map);
+            return JSON_MAPPER.writeValueAsString(node);
         } catch (JsonProcessingException e) {
             throw new IllegalStateException(e);
         }
     }
 
-    private Map fromJsonString(String json) {
+    private JsonNode fromJsonString(String json) {
         try {
-            return JSON_MAPPER.readValue(json, Map.class);
+            return JSON_MAPPER.readValue(json, JsonNode.class);
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }

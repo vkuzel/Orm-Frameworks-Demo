@@ -1,8 +1,6 @@
 package com.github.vkuzel.orm_frameworks_demo.transport;
 
-import com.github.vkuzel.orm_frameworks_demo.common.Utils;
-
-import java.util.Map;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public interface OperatorDetail {
 
@@ -10,7 +8,7 @@ public interface OperatorDetail {
 
     void setId(Long id);
 
-    Map<String, String> getName();
+    JsonNode getName();
 
-    void setName(Map<String, String> name);
+    void setName(JsonNode name);
 }
