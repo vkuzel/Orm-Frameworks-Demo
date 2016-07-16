@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath gradleApi()
+        classpath('org.jooq:jooq:3.8.3')
+        classpath('org.jooq:jooq-meta:3.8.3')
+        classpath('org.jooq:jooq-codegen:3.8.3')
+        classpath('org.postgresql:postgresql:9.4.1208.jre7')
+    }
+}
+
+import org.jooq.util.GenerationTool
+
+task(generateDomainObjects) << {
+    Configuration configuration = loadJooqConfiguration()
+    applyCredentialsFromPropertiesFile(configuration)
+    GenerationTool.generate(configuration)
+}
+
+Configuration loadJooqConfiguration() {
+    File configurationFile = findFileInProjectResources('jooq-configuration.xml')
+    return GenerationTool.load(configurationFile.newInputStream())
+}
+
+def applyCredentialsFromPropertiesFile(Configuration configuration) {
+    File propertiesFile = findFileInProjectResources('application.properties')
+    Properties properties = new Properties()
+    properties.load(propertiesFile.newInputStream())
+
+    configuration.getJdbc()
+            .withUrl(properties.getProperty('spring.datasource.url'))
+            .withUser(properties.getProperty('spring.datasource.username'))
+            .withPassword(properties.getProperty('spring.datasource.password'))
+}
+
+File findFileInProjectResources(String fileName) {
+    for (Project project : allprojects) {
+        for (String resourcesDir : project.sourceSets.main.resources.srcDirs) {
+            File file = new File(resourcesDir, fileName)
+            if (file.exists()) {
+                return file
+            }
+        }
+    }
+    throw new IllegalArgumentException("File " + fileName + " not found!")
+}

@@ -15,13 +15,13 @@ Each project is implementation of `AirilinesService` stored in common module.
 
 Don't forget to explore the code.
 
-## Frameworks
+## Implemented frameworks
 
-* [Spring Data JPA/Hibernate](http://projects.spring.io/spring-data-jpa/)
+* [Spring Data JPA/Hibernate](#spring-data-jpa-hibernate)
+* [JOOQ](#jooq)
 
 ### TODO
 
-* [JOOQ](http://www.jooq.org)
 * [myBATIS](http://blog.mybatis.org)
 * [Speedment](http://www.speedment.com)
 * [Apache Cayenne](http://cayenne.apache.org)
@@ -31,9 +31,9 @@ Don't forget to explore the code.
 * [Ebean](http://ebean-orm.github.io)
 * [ActiveJDBC](http://javalite.io/activejdbc)
 
-### Excluded
+## Excluded frameworks
 
-All non-free projects are automatically excluded from this demo. Following projects are excluded usually because long time inactivity of their authors.
+All non-free projects are automatically excluded from this demo. Following projects are also excluded. Usually because of long time inactivity of their authors.
 
 * [IBM PureQuery](http://www.ibm.com/developerworks/downloads/im/datastudiodev/?S_TACT=105AGX01&S_CMP=LP) - Last version is from 2009.
 * [Hydrate](http://hydrate.sourceforge.net/Manual.html) - Last version is from 2006 + XML configuration.
@@ -56,6 +56,37 @@ Check out the database.sql file for more details about the schema.
 * [Custom composite type](https://www.postgresql.org/docs/9.5/static/rowtypes.html) column.
 * [Enumerated type](https://www.postgresql.org/docs/current/static/datatype-enum.html) column.
 * [Array type](https://www.postgresql.org/docs/9.5/static/arrays.html) column.
-* [Stored procedures](https://www.postgresql.org/docs/9.5/static/plpgsql.html) with out parameters.
+* [Stored procedures](https://www.postgresql.org/docs/9.5/static/plpgsql.html) with OUT parameters.
 * Auditing to determine who and when created/modified a record. And what revision the record has.
 * Paging and sorting of the selected records by Spring Data's [`Pageable`](http://docs.spring.io/spring-data/commons/docs/current/api/org/springframework/data/domain/Pageable.html) class.
+* [Java 8 time API](http://www.oracle.com/technetwork/articles/java/jf14-date-time-2125367.html) for date-time types.
+
+## Pros & cons of each framework
+
+### [Spring Data JPA/Hibernate](http://projects.spring.io/spring-data-jpa/)
+
+#### Pros
+
+* Built-in support for auditing.
+* Built-in support for relations between tables. Even though it's not used in this project.
+
+#### Cons
+
+* No native support for Postgres-specific or user defined types. You have to implement your own mappings. Mappings and custom types declaration can be simplified by custom Hibernate dialect: https://github.com/vkuzel/Hibernate-PostgreSQL-Extended-Dialect
+* No support for stored procedures you have to implement it by yourself.
+
+### [JOOQ](http://www.jooq.org)
+
+At first generate the domain classes by `gradle generateDomainObjects`.
+
+#### Pros
+
+* Ligthweight with quite small amount of boilerplate code.
+* Generated code supports UDTs and stored procedures.
+
+#### Cons
+
+* Generated POJOs with UDT are not working because of https://github.com/jOOQ/jOOQ/issues/5401
+* Generated DAO.insert() method is not useable because it does not return generated ID. So I decided to use DAO at all. See https://github.com/jOOQ/jOOQ/issues/2536
+* Custom naming strategy that turns plural table names to singulars breaks a record's column names. So its unusable.
+* No native support for auditing.

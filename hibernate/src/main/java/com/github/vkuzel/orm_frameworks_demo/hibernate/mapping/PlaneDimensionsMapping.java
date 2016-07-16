@@ -1,12 +1,13 @@
 package com.github.vkuzel.orm_frameworks_demo.hibernate.mapping;
 
-import com.github.vkuzel.orm_frameworks_demo.transport.PlaneDimensions;
+import com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneDimensions;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.UserType;
 import org.postgresql.util.PGobject;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +26,7 @@ public class PlaneDimensionsMapping implements UserType {
 
     @Override
     public Class returnedClass() {
-        return PlaneDimensions.class;
+        return DetailPlaneDimensions.class;
     }
 
     @Override
@@ -45,25 +46,25 @@ public class PlaneDimensionsMapping implements UserType {
         } else {
             PGobject pGobject = new PGobject();
             pGobject.setType("plane_dimensions");
-            pGobject.setValue(toPgString((PlaneDimensions) value));
+            pGobject.setValue(toPgString((DetailPlaneDimensions) value));
             st.setObject(index, pGobject);
         }
     }
 
-    private PlaneDimensions fromPgString(String pgString) {
+    private DetailPlaneDimensions fromPgString(String pgString) {
         Matcher matcher = PG_STRING_PATTERN.matcher(pgString);
         if (matcher.find()) {
-            return new PlaneDimensions(
-                    Double.parseDouble(matcher.group(1)),
-                    Double.parseDouble(matcher.group(2)),
-                    Double.parseDouble(matcher.group(3))
+            return new DetailPlaneDimensions(
+                    new BigDecimal(matcher.group(1)),
+                    new BigDecimal(matcher.group(2)),
+                    new BigDecimal(matcher.group(3))
             );
         } else {
             throw new IllegalArgumentException(pgString);
         }
     }
 
-    private String toPgString(PlaneDimensions dimensions) {
+    private String toPgString(DetailPlaneDimensions dimensions) {
         return String.format("(%f,%f,%f)", dimensions.getLengthMeters(), dimensions.getWingspanMeters(), dimensions.getHeightMeters());
     }
 
@@ -85,8 +86,8 @@ public class PlaneDimensionsMapping implements UserType {
 
     @Override
     public Object deepCopy(Object value) throws HibernateException {
-        PlaneDimensions dimensions = (PlaneDimensions) value;
-        return new PlaneDimensions(
+        DetailPlaneDimensions dimensions = (DetailPlaneDimensions) value;
+        return new DetailPlaneDimensions(
                 dimensions.getLengthMeters(),
                 dimensions.getWingspanMeters(),
                 dimensions.getHeightMeters()

@@ -1,7 +1,6 @@
 package com.github.vkuzel.orm_frameworks_demo.hibernate.mapping;
 
-import com.github.vkuzel.orm_frameworks_demo.transport.PlaneDimensions;
-import com.github.vkuzel.orm_frameworks_demo.transport.PlaneType;
+import com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType;
 import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.UserType;
@@ -21,7 +20,7 @@ public class PlaneTypeMapping implements UserType {
 
     @Override
     public Class returnedClass() {
-        return PlaneType.class;
+        return DetailPlaneType.class;
     }
 
     @Override
@@ -30,7 +29,7 @@ public class PlaneTypeMapping implements UserType {
             return null;
         }
 
-        return PlaneType.valueOf(rs.getString(names[0]));
+        return DetailPlaneType.valueOf(rs.getString(names[0]));
     }
 
     @Override
@@ -40,7 +39,7 @@ public class PlaneTypeMapping implements UserType {
         } else {
             PGobject pGobject = new PGobject();
             pGobject.setType("plane_type");
-            pGobject.setValue(((PlaneType) value).name());
+            pGobject.setValue(((DetailPlaneType) value).name());
             st.setObject(index, pGobject);
         }
     }

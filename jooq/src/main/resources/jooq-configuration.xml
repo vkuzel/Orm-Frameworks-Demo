@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.8.0.xsd">
+    <jdbc>
+        <driver>org.postgresql.Driver</driver>
+        <!-- Url, username and password will be filled from application.properties in jooq.gradle script. -->
+        <url/>
+        <user/>
+        <password/>
+    </jdbc>
+
+    <generator>
+        <name>org.jooq.util.JavaGenerator</name>
+
+        <database>
+            <name>org.jooq.util.postgres.PostgresDatabase</name>
+            <inputSchema>public</inputSchema>
+            <includes>.*</includes>
+            <excludes/>
+
+            <customTypes>
+                <customType>
+                    <name>LocalDateTime</name>
+                    <type>java.time.LocalDateTime</type>
+                    <converter>com.github.vkuzel.orm_frameworks_demo.jooq.converter.LocalDateTimeConverter</converter>
+                </customType>
+                <customType>
+                    <name>Json</name>
+                    <type>com.fasterxml.jackson.databind.JsonNode</type>
+                    <binding>com.github.vkuzel.orm_frameworks_demo.jooq.binding.JsonBinding</binding>
+                </customType>
+                <!-- Generated type bypassed because of https://github.com/jOOQ/jOOQ/issues/5401 -->
+                <customType>
+                    <name>DetailPlaneDimensions</name>
+                    <type>com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneDimensions</type>
+                    <binding>com.github.vkuzel.orm_frameworks_demo.jooq.binding.PlaneDimensionsBinding</binding>
+                </customType>
+                <customType>
+                    <name>DetailPlaneType</name>
+                    <type>com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType</type>
+                    <binding>com.github.vkuzel.orm_frameworks_demo.jooq.binding.PlaneTypeBinding</binding>
+                </customType>
+            </customTypes>
+            <forcedTypes>
+                <forcedType>
+                    <name>LocalDateTime</name>
+                    <types>TIMESTAMP.*</types>
+                </forcedType>
+                <forcedType>
+                    <name>Json</name>
+                    <types>JSON</types>
+                </forcedType>
+                <forcedType>
+                    <name>DetailPlaneDimensions</name>
+                    <expression>DIMENSIONS</expression>
+                </forcedType>
+                <forcedType>
+                    <name>DetailPlaneType</name>
+                    <expression>PLANE_TYPE</expression>
+                </forcedType>
+            </forcedTypes>
+        </database>
+
+        <target>
+            <packageName>com.github.vkuzel.orm_frameworks_demo.jooq</packageName>
+            <directory>src/generated/java</directory>
+            <encoding>UTF-8</encoding>
+        </target>
+
+<!--
+        <generate>
+            <pojos>true</pojos>
+            <daos>true</daos>
+            <springAnnotations>true</springAnnotations>
+        </generate>
+-->
+    </generator>
+</configuration>

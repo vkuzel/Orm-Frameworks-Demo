@@ -12,9 +12,11 @@ dependencyManagement {
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter')
+    compile('org.springframework.boot:spring-boot-starter-jdbc')
+    compile('org.springframework.data:spring-data-commons')
     compile('com.google.guava:guava:18.0')
     compile('junit:junit:4.12')
-    runtime('org.postgresql:postgresql')
     compile('com.fasterxml.jackson.core:jackson-databind:2.6.+')
+    runtime('org.postgresql:postgresql')
 }

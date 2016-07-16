@@ -1,7 +1,5 @@
 package com.github.vkuzel.orm_frameworks_demo.hibernate.domain;
 
-import com.github.vkuzel.orm_frameworks_demo.transport.OperatorDetail;
-import com.github.vkuzel.orm_frameworks_demo.transport.PlaneDetail;
 import com.github.vkuzel.orm_frameworks_demo.transport.RegistrationDetail;
 
 import javax.persistence.*;
@@ -13,42 +11,46 @@ public class Registration implements RegistrationDetail {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "registrations_seq_gen")
     @SequenceGenerator(name = "registrations_seq_gen", sequenceName = "registrations_id_seq")
     private Long id;
-    @ManyToOne
-    @JoinColumn(name="plane_id")
-    private Plane plane;
-    @ManyToOne
-    @JoinColumn(name="operator_id")
-    private Operator operator;
+    private long planeId;
+    private long operatorId;
     private String registrationNumber;
 
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
-    public PlaneDetail getPlane() {
-        return plane;
+    @Override
+    public long getPlaneId() {
+        return planeId;
     }
 
-    public void setPlane(PlaneDetail plane) {
-        this.plane = (Plane) plane;
+    @Override
+    public void setPlaneId(long planeId) {
+        this.planeId = planeId;
     }
 
-    public OperatorDetail getOperator() {
-        return operator;
+    @Override
+    public long getOperatorId() {
+        return operatorId;
     }
 
-    public void setOperator(OperatorDetail operator) {
-        this.operator = (Operator) operator;
+    @Override
+    public void setOperatorId(long operatorId) {
+        this.operatorId = operatorId;
     }
 
+    @Override
     public String getRegistrationNumber() {
         return registrationNumber;
     }
 
+    @Override
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
     }

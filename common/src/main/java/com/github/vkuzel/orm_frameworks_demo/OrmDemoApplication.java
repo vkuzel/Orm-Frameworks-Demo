@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.annotation.PostConstruct;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -41,8 +42,9 @@ public class OrmDemoApplication implements CommandLineRunner {
 
         PlaneDetail newPlane = airlinesService.newPlaneDetailInstance();
         newPlane.setName("Embraer 190");
-        newPlane.setDimensions(new PlaneDimensions(36.24, 28.72, 10.57));
-        newPlane.setPlaneType(PlaneType.JET);
+
+        newPlane.setDimensions(new DetailPlaneDimensions(BigDecimal.valueOf(36.24), BigDecimal.valueOf(28.72), BigDecimal.valueOf(10.57)));
+        newPlane.setPlaneType(DetailPlaneType.JET);
         newPlane.setSeatsLayout(new Integer[]{2, 2});
 
         PlaneDetail savedPlane = airlinesService.createPlane(newPlane);
@@ -72,13 +74,13 @@ public class OrmDemoApplication implements CommandLineRunner {
 
         OperatorDetail operator = airlinesService.findOperatorByName("en", "Lufthansa");
         assertNotNull(operator);
-        assertTrue(operator.getId() == 2);
+        assertEquals(2, (long) operator.getId());
 
         Sort sort = new Sort(Sort.Direction.DESC, "name");
         PageRequest page = new PageRequest(0, 2, sort);
         Page<OperatorDetail> operatorsPage = airlinesService.findAllOperators("en", page);
-        assertTrue(operatorsPage.getTotalElements() == 3);
-        assertTrue(operatorsPage.getTotalPages() == 2);
+        assertEquals(3, operatorsPage.getTotalElements());
+        assertEquals(2, operatorsPage.getTotalPages());
         List<OperatorDetail> operators = operatorsPage.getContent();
         assertEquals("Lufthansa", operators.get(0).getName().get("en").textValue());
         assertEquals("Emirates", operators.get(1).getName().get("en").textValue());
@@ -89,8 +91,8 @@ public class OrmDemoApplication implements CommandLineRunner {
 
         RegistrationDetail registration = airlinesService.findRegistrationByRegistrationNumber(registrationNumber);
         assertNotNull(registration);
-        assertEquals(updatedPlane.getId(), registration.getPlane().getId());
-        assertEquals(operator.getId(), registration.getOperator().getId());
+        assertEquals((long) updatedPlane.getId(), registration.getPlaneId());
+        assertEquals((long) operator.getId(), registration.getOperatorId());
         assertEquals(registrationNumber, registration.getRegistrationNumber());
     }
 

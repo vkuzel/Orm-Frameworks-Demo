@@ -12,13 +12,13 @@ public interface PlaneDetail {
 
     void setName(String name);
 
-    PlaneDimensions getDimensions();
+    DetailPlaneDimensions getDimensions();
 
-    void setDimensions(PlaneDimensions dimensions);
+    void setDimensions(DetailPlaneDimensions dimensions);
 
-    PlaneType getPlaneType();
+    DetailPlaneType getPlaneType();
 
-    void setPlaneType(PlaneType planeType);
+    void setPlaneType(DetailPlaneType planeType);
 
     Integer[] getSeatsLayout();
 
