@@ -11,6 +11,7 @@ buildscript {
     }
 }
 
+
 import org.jooq.util.GenerationTool
 
 task(generateDomainObjects) << {
@@ -20,7 +21,7 @@ task(generateDomainObjects) << {
 }
 
 Configuration loadJooqConfiguration() {
-    File configurationFile = findFileInProjectResources('jooq-configuration.xml')
+    File configurationFile = findFileInProjectResources('jooq-generator-configuration.xml')
     return GenerationTool.load(configurationFile.newInputStream())
 }
 

@@ -57,8 +57,8 @@ public class HibernateAirlinesService implements AirlinesService {
 
     @Override
     @Transactional
-    public PlaneDetail updatePlaneTransactionalThatThrowsException(PlaneDetail planeDetail) {
-        planeRepository.save((Plane) planeDetail);
+    public PlaneDetail updatePlaneTransactionalThatThrowsException(PlaneDetail plane) {
+        planeRepository.save((Plane) plane);
         throw new IllegalStateException();
     }
 

@@ -1,4 +1,4 @@
-package com.github.vkuzel.orm_frameworks_demo.hibernate.auditing;
+package com.github.vkuzel.orm_frameworks_demo.hibernate.audit;
 
 import com.github.vkuzel.orm_frameworks_demo.service.UsernameProvider;
 import org.springframework.data.domain.AuditorAware;

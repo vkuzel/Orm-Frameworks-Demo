@@ -14,7 +14,7 @@ public interface AirlinesService {
 
     PlaneDetail updatePlane(PlaneDetail plane);
 
-    PlaneDetail updatePlaneTransactionalThatThrowsException(PlaneDetail planeDetail);
+    PlaneDetail updatePlaneTransactionalThatThrowsException(PlaneDetail plane);
 
     OperatorDetail findOperatorByName(String languageCode, String name);
 

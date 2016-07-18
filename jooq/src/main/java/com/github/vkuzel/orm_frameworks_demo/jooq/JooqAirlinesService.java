@@ -57,8 +57,8 @@ public class JooqAirlinesService implements AirlinesService {
 
     @Override
     @Transactional
-    public PlaneDetail updatePlaneTransactionalThatThrowsException(PlaneDetail planeDetail) {
-        PlanesRecord planesRecord = dsl.newRecord(Planes.PLANES, planeDetail);
+    public PlaneDetail updatePlaneTransactionalThatThrowsException(PlaneDetail plane) {
+        PlanesRecord planesRecord = dsl.newRecord(Planes.PLANES, plane);
         planesRecord.update();
         throw new IllegalStateException();
     }

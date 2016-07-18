@@ -36,11 +36,11 @@ CREATE TABLE registrations (
   registration_number VARCHAR(50)
 );
 
-CREATE FUNCTION register_new_plane(plane_id BIGINT, operator_id BIGINT, registration_number VARCHAR, registration_id OUT BIGINT)
+CREATE FUNCTION register_new_plane(plane_id BIGINT, operator_id BIGINT, registration_number VARCHAR, registrationId OUT BIGINT)
   RETURNS BIGINT AS $$
 BEGIN
   INSERT INTO registrations (plane_id, operator_id, registration_number)
   VALUES (plane_id, operator_id, registration_number)
-  RETURNING id INTO registration_id;
+  RETURNING id INTO registrationId;
 END;
 $$ LANGUAGE plpgsql;

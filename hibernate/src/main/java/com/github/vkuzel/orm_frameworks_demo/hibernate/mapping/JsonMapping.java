@@ -17,7 +17,7 @@ import java.sql.Types;
 
 public class JsonMapping implements UserType {
 
-    public static final ObjectMapper JSON_MAPPER = new ObjectMapper();
+    private static final ObjectMapper JSON_MAPPER = new ObjectMapper();
 
     @Override
     public int[] sqlTypes() {

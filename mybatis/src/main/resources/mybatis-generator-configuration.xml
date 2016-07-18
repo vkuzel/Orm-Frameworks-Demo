@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="lib/postgresql-9.4.1208.jre6.jar"/>
+
+    <context id="OrmFrameworksDemo" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://127.0.0.1:5432/ormframeworksdemo"
+                        userId="ormframeworksdemo"
+                        password="ormframeworksdemo"/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.github.vkuzel.orm_frameworks_demo.mybatis.model"
+                            targetProject="src/generated/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.github.vkuzel.orm_frameworks_demo.mybatis.dao"
+                             targetProject="src/generated/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="operators" domainObjectName="Operator">
+            <generatedKey column="id" sqlStatement="SELECT currval('operators_id_seq')" identity="true"/>
+            <columnOverride column="name" javaType="com.fasterxml.jackson.databind.JsonNode"
+                            typeHandler="com.github.vkuzel.orm_frameworks_demo.mybatis.typehandler.JsonTypeHandler"/>
+        </table>
+
+        <table tableName="planes" domainObjectName="Plane">
+            <generatedKey column="id" sqlStatement="SELECT currval('planes_id_seq')" identity="true"/>
+            <columnOverride column="dimensions"
+                            javaType="com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneDimensions"
+                            typeHandler="com.github.vkuzel.orm_frameworks_demo.mybatis.typehandler.PlaneDimensionsTypeHandler"/>
+            <columnOverride column="plane_type"
+                            javaType="com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType"
+                            typeHandler="com.github.vkuzel.orm_frameworks_demo.mybatis.typehandler.PlaneTypeTypeHandler"/>
+            <columnOverride column="seats_layout" javaType="Integer[]"
+                            typeHandler="com.github.vkuzel.orm_frameworks_demo.mybatis.typehandler.IntegerArrayTypeHandler"/>
+            <columnOverride column="created_at" javaType="java.time.LocalDateTime"
+                            typeHandler="com.github.vkuzel.orm_frameworks_demo.mybatis.typehandler.LocalDateTimeTypeHandler"/>
+            <columnOverride column="updated_at" javaType="java.time.LocalDateTime"
+                            typeHandler="com.github.vkuzel.orm_frameworks_demo.mybatis.typehandler.LocalDateTimeTypeHandler"/>
+            <columnOverride column="revision" javaType="int"/>
+        </table>
+
+        <table tableName="registrations" domainObjectName="Registration">
+            <generatedKey column="id" sqlStatement="SELECT currval('registrations_id_seq')" identity="true"/>
+            <columnOverride column="plane_id" javaType="long"/>
+            <columnOverride column="operator_id" javaType="long"/>
+        </table>
+    </context>
+</generatorConfiguration>

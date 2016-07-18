@@ -1,6 +1,5 @@
 package com.github.vkuzel.orm_frameworks_demo.jooq.config;
 
-import com.github.vkuzel.orm_frameworks_demo.jooq.tables.records.PlanesRecord;
 import com.github.vkuzel.orm_frameworks_demo.service.UsernameProvider;
 import org.jooq.Record;
 import org.jooq.RecordContext;
@@ -21,50 +20,46 @@ public class PersistenceConfiguration {
         return () -> new DefaultRecordListener() {
             @Override
             public void insertStart(RecordContext ctx) {
-                if (ctx.record() instanceof PlanesRecord) {
-                    Record record = ctx.record();
-                    for (Method method : record.getClass().getDeclaredMethods()) {
-                        try {
-                            switch (method.getName()) {
-                                case "setCreatedAt":
-                                    method.invoke(record, LocalDateTime.now());
-                                    break;
-                                case "setCreatedBy":
-                                    method.invoke(record, UsernameProvider.getUsername());
-                                    break;
-                                case "setRevision":
-                                    method.invoke(record, 1);
-                                    break;
-                            }
-                        } catch (IllegalAccessException | InvocationTargetException e) {
-                            throw new IllegalArgumentException(e);
+                Record record = ctx.record();
+                for (Method method : record.getClass().getDeclaredMethods()) {
+                    try {
+                        switch (method.getName()) {
+                            case "setCreatedAt":
+                                method.invoke(record, LocalDateTime.now());
+                                break;
+                            case "setCreatedBy":
+                                method.invoke(record, UsernameProvider.getUsername());
+                                break;
+                            case "setRevision":
+                                method.invoke(record, 1);
+                                break;
                         }
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        throw new IllegalArgumentException(e);
                     }
                 }
             }
 
             @Override
             public void updateStart(RecordContext ctx) {
-                if (ctx.record() instanceof PlanesRecord) {
-                    Record record = ctx.record();
-                    for (Method method : record.getClass().getDeclaredMethods()) {
-                        try {
-                            switch (method.getName()) {
-                                case "setUpdatedAt":
-                                    method.invoke(record, LocalDateTime.now());
-                                    break;
-                                case "setUpdatedBy":
-                                    method.invoke(record, UsernameProvider.getUsername());
-                                    break;
-                                case "setRevision":
-                                    Method getRevisionMethod = record.getClass().getDeclaredMethod("getRevision");
-                                    int revision = (int) getRevisionMethod.invoke(record);
-                                    method.invoke(record, revision + 1);
-                                    break;
-                            }
-                        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                            throw new IllegalArgumentException(e);
+                Record record = ctx.record();
+                for (Method method : record.getClass().getDeclaredMethods()) {
+                    try {
+                        switch (method.getName()) {
+                            case "setUpdatedAt":
+                                method.invoke(record, LocalDateTime.now());
+                                break;
+                            case "setUpdatedBy":
+                                method.invoke(record, UsernameProvider.getUsername());
+                                break;
+                            case "setRevision":
+                                Method getRevisionMethod = record.getClass().getDeclaredMethod("getRevision");
+                                int revision = (int) getRevisionMethod.invoke(record);
+                                method.invoke(record, revision + 1);
+                                break;
                         }
+                    } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                        throw new IllegalArgumentException(e);
                     }
                 }
             }

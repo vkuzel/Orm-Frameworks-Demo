@@ -17,12 +17,12 @@ Don't forget to explore the code.
 
 ## Implemented frameworks
 
-* [Spring Data JPA/Hibernate](#spring-data-jpa-hibernate)
+* [Spring Data JPA/Hibernate](#spring-data-jpahibernate)
 * [JOOQ](#jooq)
+* [MyBatis](#mybatis)
 
 ### TODO
 
-* [myBATIS](http://blog.mybatis.org)
 * [Speedment](http://www.speedment.com)
 * [Apache Cayenne](http://cayenne.apache.org)
 * [Apache OpenJPA](http://openjpa.apache.org)
@@ -77,7 +77,7 @@ Check out the database.sql file for more details about the schema.
 
 ### [JOOQ](http://www.jooq.org)
 
-At first generate the domain classes by `gradle generateDomainObjects`.
+Before you start generate domain classes by running `gradle generateDomainObjects`.
 
 #### Pros
 
@@ -89,4 +89,17 @@ At first generate the domain classes by `gradle generateDomainObjects`.
 * Generated POJOs with UDT are not working because of https://github.com/jOOQ/jOOQ/issues/5401
 * Generated DAO.insert() method is not useable because it does not return generated ID. So I decided to use DAO at all. See https://github.com/jOOQ/jOOQ/issues/2536
 * Custom naming strategy that turns plural table names to singulars breaks a record's column names. So its unusable.
-* No native support for auditing.
+* No built-in support for auditing.
+
+### [MyBatis](http://mybatis.org)
+
+#### Pros
+
+* Lightweight.
+* Easy to understand and easy to implement.
+
+#### Cons
+
+* No built-in support for auditing.
+* Records pagination and ordering is kind of sketchy.
+* Does not recognize PostgreSQL UDTs.

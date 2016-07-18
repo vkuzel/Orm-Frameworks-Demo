@@ -65,13 +65,5 @@
             <directory>src/generated/java</directory>
             <encoding>UTF-8</encoding>
         </target>
-
-<!--
-        <generate>
-            <pojos>true</pojos>
-            <daos>true</daos>
-            <springAnnotations>true</springAnnotations>
-        </generate>
--->
     </generator>
 </configuration>
