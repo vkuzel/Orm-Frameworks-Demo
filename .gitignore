@@ -1,4 +1,5 @@
 .gradle
 build/
+generated/
 .idea
 .DS_Store
