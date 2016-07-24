@@ -1,0 +1,48 @@
+buildscript {
+    ext {
+        springBootVersion = '1.3.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('com.speedment:speedment:2.3.5')
+        classpath('org.postgresql:postgresql:9.4-1206-jdbc4')
+        classpath files('lib/SpeedmentGradlePlugin-2.3.5.jar')
+        classpath files('lib/speedment-mapping-plugin.jar')
+    }
+}
+
+import com.github.vkuzel.orm_frameworks_demo.speedment.OrmFrameworksDemoMappingComponentConstructor
+
+ext {
+    speedmentComponentConstructors = [
+            new OrmFrameworksDemoMappingComponentConstructor()
+    ]
+}
+
+apply plugin: 'spring-boot'
+apply plugin: 'com.speedment.gradle'
+
+springBoot {
+    mainClass = 'com.github.vkuzel.orm_frameworks_demo.OrmDemoApplication'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/generated/java'
+        }
+    }
+}
+
+dependencies {
+    compile project(':common')
+    compile('com.speedment:speedment:2.3.5')
+    compile files('lib/speedment-mapping-plugin.jar')
+}

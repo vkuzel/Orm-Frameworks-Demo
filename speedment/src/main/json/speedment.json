@@ -1,0 +1,295 @@
+{
+  "config": {
+    "expanded": true,
+    "companyName": "github",
+    "name": "speedment",
+    "packageLocation": "src/generated/java/",
+    "packageName": "com.github.vkuzel.orm_frameworks_demo",
+    "dbmses": [
+      {
+        "expanded": true,
+        "port": 5432.0,
+        "schemas": [
+          {
+            "tables": [
+              {
+                "expanded": true,
+                "primaryKeyColumns": [
+                  {
+                    "expanded": true,
+                    "name": "id",
+                    "ordinalPosition": 1.0
+                  }
+                ],
+                "indexes": [
+                  {
+                    "expanded": false,
+                    "unique": true,
+                    "name": "operators_pkey",
+                    "indexColumns": [
+                      {
+                        "orderType": "ASC",
+                        "expanded": true,
+                        "name": "id",
+                        "ordinalPosition": 1.0
+                      }
+                    ],
+                    "enabled": true
+                  }
+                ],
+                "columns": [
+                  {
+                    "databaseType": "java.lang.Long",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "autoIncrement": true,
+                    "name": "id",
+                    "ordinalPosition": 1.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.lang.Object",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.ObjectIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "name": "name",
+                    "ordinalPosition": 2.0,
+                    "enabled": true
+                  }
+                ],
+                "name": "operators",
+                "enabled": true
+              },
+              {
+                "expanded": true,
+                "primaryKeyColumns": [
+                  {
+                    "expanded": true,
+                    "name": "id",
+                    "ordinalPosition": 1.0
+                  }
+                ],
+                "indexes": [
+                  {
+                    "expanded": false,
+                    "unique": true,
+                    "name": "planes_pkey",
+                    "indexColumns": [
+                      {
+                        "orderType": "ASC",
+                        "expanded": true,
+                        "name": "id",
+                        "ordinalPosition": 1.0
+                      }
+                    ],
+                    "enabled": true
+                  }
+                ],
+                "columns": [
+                  {
+                    "databaseType": "java.lang.Long",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "autoIncrement": true,
+                    "name": "id",
+                    "ordinalPosition": 1.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.lang.String",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "name": "name",
+                    "ordinalPosition": 2.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.lang.Object",
+                    "typeMapper": "com.github.vkuzel.orm_frameworks_demo.speedment.mapper.PlaneDimensionsMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "autoIncrement": false,
+                    "name": "dimensions",
+                    "ordinalPosition": 3.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.lang.String",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "name": "plane_type",
+                    "ordinalPosition": 4.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.lang.Object",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.ObjectIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "name": "seats_layout",
+                    "ordinalPosition": 5.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.sql.Timestamp",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.TimestampIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "name": "created_at",
+                    "ordinalPosition": 6.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.lang.String",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "name": "created_by",
+                    "ordinalPosition": 7.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.sql.Timestamp",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.TimestampIdentityMapper",
+                    "expanded": true,
+                    "nullable": true,
+                    "name": "updated_at",
+                    "ordinalPosition": 8.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.lang.String",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
+                    "expanded": true,
+                    "nullable": true,
+                    "name": "updated_by",
+                    "ordinalPosition": 9.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.lang.Integer",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.IntegerIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "name": "revision",
+                    "ordinalPosition": 10.0,
+                    "enabled": true
+                  }
+                ],
+                "name": "planes",
+                "enabled": true
+              },
+              {
+                "foreignKeys": [
+                  {
+                    "expanded": false,
+                    "foreignKeyColumns": [
+                      {
+                        "expanded": true,
+                        "name": "operator_id",
+                        "foreignColumnName": "id",
+                        "foreignTableName": "operators",
+                        "ordinalPosition": 1.0
+                      }
+                    ],
+                    "name": "registrations_operator_id_fkey"
+                  },
+                  {
+                    "expanded": false,
+                    "foreignKeyColumns": [
+                      {
+                        "expanded": true,
+                        "name": "plane_id",
+                        "foreignColumnName": "id",
+                        "foreignTableName": "planes",
+                        "ordinalPosition": 1.0
+                      }
+                    ],
+                    "name": "registrations_plane_id_fkey"
+                  }
+                ],
+                "expanded": true,
+                "primaryKeyColumns": [
+                  {
+                    "expanded": true,
+                    "name": "id",
+                    "ordinalPosition": 1.0
+                  }
+                ],
+                "indexes": [
+                  {
+                    "expanded": false,
+                    "unique": true,
+                    "name": "registrations_pkey",
+                    "indexColumns": [
+                      {
+                        "orderType": "ASC",
+                        "expanded": true,
+                        "name": "id",
+                        "ordinalPosition": 1.0
+                      }
+                    ]
+                  }
+                ],
+                "columns": [
+                  {
+                    "databaseType": "java.lang.Long",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "autoIncrement": true,
+                    "name": "id",
+                    "ordinalPosition": 1.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.lang.Long",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "name": "plane_id",
+                    "ordinalPosition": 2.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.lang.Long",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.LongIdentityMapper",
+                    "expanded": true,
+                    "nullable": false,
+                    "name": "operator_id",
+                    "ordinalPosition": 3.0,
+                    "enabled": true
+                  },
+                  {
+                    "databaseType": "java.lang.String",
+                    "typeMapper": "com.speedment.config.db.mapper.identity.StringIdentityMapper",
+                    "expanded": true,
+                    "nullable": true,
+                    "name": "registration_number",
+                    "ordinalPosition": 4.0
+                  }
+                ],
+                "name": "registrations",
+                "enabled": true
+              }
+            ],
+            "expanded": true,
+            "name": "public",
+            "alias": "public",
+            "enabled": true
+          }
+        ],
+        "name": "ormframeworksdemo",
+        "typeName": "PostgreSQL",
+        "ipAddress": "127.0.0.1",
+        "enabled": true,
+        "username": "ormframeworksdemo"
+      }
+    ],
+    "enabled": true
+  }
+}

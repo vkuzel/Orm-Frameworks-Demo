@@ -20,10 +20,15 @@ Don't forget to explore the code.
 * [Spring Data JPA/Hibernate](#spring-data-jpahibernate)
 * [JOOQ](#jooq)
 * [MyBatis](#mybatis)
+* [Speedment](#speedment)
+
+In version 2.3.5 Speedment does not support transactions. So I decided to freeze this ORM until it will support it.
+There is partial implementation. But there are missing mappers, etc.
+There is also second project speedment-mapping-plugin to map custom types to UDTs.
+This project is used by Speedment generator and by my implementation too.
 
 ### TODO
 
-* [Speedment](http://www.speedment.com)
 * [Apache Cayenne](http://cayenne.apache.org)
 * [Apache OpenJPA](http://openjpa.apache.org)
 * [DataNucleus Access Platform](http://www.datanucleus.org)
@@ -103,3 +108,9 @@ Before you start generate domain classes by running `gradle generateDomainObject
 * No built-in support for auditing.
 * Records pagination and ordering is kind of sketchy.
 * Does not recognize PostgreSQL UDTs.
+
+### [Speedment](http://www.speedment.com)
+
+#### Pros
+
+#### Cons

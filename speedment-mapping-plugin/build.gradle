@@ -1,0 +1,23 @@
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('com.speedment:speedment:2.3.5')
+    compile('org.postgresql:postgresql:9.4-1206-jdbc4')
+}
+
+task(installPlugin) << {
+    Path targetPath = Paths.get("../speedment/lib/speedment-mapping-plugin.jar")
+    println targetPath.toFile().getAbsolutePath()
+    Files.copy(jar.archivePath.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+}
+
+installPlugin.dependsOn jar
