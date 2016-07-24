@@ -23,7 +23,6 @@ Don't forget to explore the code.
 
 ### TODO
 
-* [Speedment](http://www.speedment.com)
 * [Apache Cayenne](http://cayenne.apache.org)
 * [Apache OpenJPA](http://openjpa.apache.org)
 * [DataNucleus Access Platform](http://www.datanucleus.org)
@@ -46,6 +45,7 @@ All non-free projects are automatically excluded from this demo. Following proje
 * [TJDO Project](http://tjdo.sourceforge.net) - It has CVS repository with last commit from 2008.
 * [JPOX](http://www.jpox.org) - Last version on SourceForge is from 2013.
 * [Carbonado](https://github.com/Carbonado/Carbonado) - Seems like abandoned project.
+* [Speedment](http://www.speedment.com) - In current version 2.3.5 Speedment does not support transactions.
 
 ## Tested features
 
