@@ -1,0 +1,76 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        // Cayene Modelere depends on this foundrylogic.vpp:vpp:2.2.1 library
+        // which I could found only in spring's repository.
+        maven { url 'http://repo.spring.io/libs-milestone/' }
+    }
+    dependencies {
+        classpath('org.apache.cayenne.modeler:cayenne-modeler:4.0.M3')
+    }
+}
+
+import org.apache.cayenne.gen.ClassGenerationAction
+import org.apache.cayenne.gen.ArtifactsGenerationMode
+import org.apache.cayenne.map.DataMap
+import org.apache.cayenne.map.MapLoader
+import org.xml.sax.InputSource
+
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
+import java.nio.file.attribute.BasicFileAttributes
+import java.util.function.BiPredicate
+
+task(generateDomainObjects) << {
+    Path destDir = Paths.get("src/generated/java")
+    Files.createDirectories(destDir)
+
+    ClassGenerationAction action = new ClassGenerationAction()
+
+    action.setDestDir(destDir.toFile())
+    action.setArtifactsGenerationMode(ArtifactsGenerationMode.ENTITY.getLabel());
+
+    File dataMapFile = findFileInProjectResources('datamap.map.xml');
+    DataMap dataMap = loadDataMap(dataMapFile)
+
+    action.setTimestamp(dataMapFile.lastModified())
+    action.setDataMap(dataMap)
+    action.addEntities(dataMap.getObjEntities())
+    action.addQueries(dataMap.getQueries())
+
+    action.execute()
+
+    // There are DO classes with some additional functionality present in main
+    // source set. To prevent collisions we have to remove generated DO
+    // subclasses by following hack.
+    deleteEntitySubclasses(destDir)
+}
+
+DataMap loadDataMap(File dataMapFile) {
+    InputSource inputSource = new InputSource(dataMapFile.newInputStream())
+    MapLoader mapLoader = new MapLoader()
+    return mapLoader.loadDataMap(inputSource)
+}
+
+def deleteEntitySubclasses(Path destDir) {
+    Path generatedEntityDir = destDir.resolve('com/github/vkuzel/orm_frameworks_demo/cayenne/domain/')
+    Files.find(generatedEntityDir, 1, new BiPredicate<Path, BasicFileAttributes>() {
+        @Override
+        public boolean test(Path path, BasicFileAttributes basicFileAttributes) {
+            return path.toString().endsWith('.java')
+        }
+    }).forEach({ path -> Files.delete(path) })
+}
+
+File findFileInProjectResources(String fileName) {
+    for (Project project : allprojects) {
+        for (String resourcesDir : project.sourceSets.main.resources.srcDirs) {
+            File file = new File(resourcesDir, fileName)
+            if (file.exists()) {
+                return file
+            }
+        }
+    }
+    throw new IllegalArgumentException('File ' + fileName + ' not found!')
+}

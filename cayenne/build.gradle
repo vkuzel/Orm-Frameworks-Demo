@@ -1,0 +1,35 @@
+buildscript {
+    ext {
+        springBootVersion = '1.3.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'spring-boot'
+apply from: 'cayenne.gradle'
+
+springBoot {
+    mainClass = 'com.github.vkuzel.orm_frameworks_demo.OrmDemoApplication'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/generated/java'
+        }
+    }
+}
+
+dependencies {
+    compile project(':common')
+    compile('org.apache.cayenne:cayenne-server:4.0.M3')
+}

@@ -20,10 +20,10 @@ Don't forget to explore the code.
 * [Spring Data JPA/Hibernate](#spring-data-jpahibernate)
 * [JOOQ](#jooq)
 * [MyBatis](#mybatis)
+* [Apache Cayenne](#apache-cayenne)
 
 ### TODO
 
-* [Apache Cayenne](http://cayenne.apache.org)
 * [Apache OpenJPA](http://openjpa.apache.org)
 * [DataNucleus Access Platform](http://www.datanucleus.org)
 * [Fjorm](https://github.com/mladenadamovic/fjorm/tree/master)
@@ -103,3 +103,16 @@ Before you start generate domain classes by running `gradle generateDomainObject
 * No built-in support for auditing.
 * Records pagination and ordering is kind of sketchy.
 * Does not recognize PostgreSQL UDTs.
+
+### [Apache Cayenne](http://cayenne.apache.org)
+
+#### Pros
+
+* Less verbose than Hibernate.
+* Generated classes leads to less boilerplate code.
+
+#### Cons
+
+* Custom transaction management. Transactions had to be commited explicitly. Maybe it's because I couldn't figure out how to integrate it with JTA.
+* Code is polluted by ObjectContext instances.
+* Modeler can't start from Gradle task.

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/7/modelMap"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://cayenne.apache.org/schema/7/modelMap http://cayenne.apache.org/schema/7/modelMap.xsd"
+	 project-version="7">
+	<property name="defaultPackage" value="com.github.vkuzel.orm_frameworks_demo.cayenne.domain"/>
+	<property name="defaultSchema" value="public"/>
+	<procedure name="register_new_plane" schema="public">
+		<procedure-parameter name="plane_id" type="BIGINT" direction="in"/>
+		<procedure-parameter name="operation_id" type="BIGINT" direction="in"/>
+		<procedure-parameter name="registration_number" type="VARCHAR" length="50" direction="in"/>
+		<procedure-parameter name="registration_id" type="BIGINT" direction="out"/>
+	</procedure>
+	<db-entity name="operators" schema="public">
+		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+		<db-attribute name="name" type="OTHER" isMandatory="true" length="2147483647"/>
+		<db-key-generator>
+			<db-generator-type>ORACLE</db-generator-type>
+			<db-generator-name>operators_id_seq</db-generator-name>
+		</db-key-generator>
+	</db-entity>
+	<db-entity name="planes" schema="public">
+		<db-attribute name="created_at" type="TIMESTAMP" isMandatory="true" length="29"/>
+		<db-attribute name="created_by" type="VARCHAR" isMandatory="true" length="250"/>
+		<db-attribute name="dimensions" isMandatory="true" length="2147483647"/>
+		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="250"/>
+		<db-attribute name="plane_type" type="VARCHAR" isMandatory="true" length="2147483647"/>
+		<db-attribute name="revision" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="seats_layout" isMandatory="true" length="10"/>
+		<db-attribute name="updated_at" type="TIMESTAMP" length="29"/>
+		<db-attribute name="updated_by" type="VARCHAR" length="250"/>
+		<db-key-generator>
+			<db-generator-type>ORACLE</db-generator-type>
+			<db-generator-name>planes_id_seq</db-generator-name>
+		</db-key-generator>
+	</db-entity>
+	<db-entity name="registrations" schema="public">
+		<db-attribute name="id" type="BIGINT" isPrimaryKey="true" isMandatory="true" length="19"/>
+		<db-attribute name="operator_id" type="BIGINT" isMandatory="true" length="19"/>
+		<db-attribute name="plane_id" type="BIGINT" isMandatory="true" length="19"/>
+		<db-attribute name="registration_number" type="VARCHAR" length="50"/>
+		<db-key-generator>
+			<db-generator-type>ORACLE</db-generator-type>
+			<db-generator-name>registreations_id_seq</db-generator-name>
+		</db-key-generator>
+	</db-entity>
+	<obj-entity name="Operator" className="com.github.vkuzel.orm_frameworks_demo.cayenne.domain.Operator" dbEntityName="operators">
+		<obj-attribute name="name" type="com.fasterxml.jackson.databind.JsonNode" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="Plane" className="com.github.vkuzel.orm_frameworks_demo.cayenne.domain.Plane" dbEntityName="planes">
+		<obj-attribute name="createdAt" type="java.time.LocalDateTime" db-attribute-path="created_at"/>
+		<obj-attribute name="createdBy" type="java.lang.String" db-attribute-path="created_by"/>
+		<obj-attribute name="dimensions" type="com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneDimensions" db-attribute-path="dimensions"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="planeType" type="com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType" db-attribute-path="plane_type"/>
+		<obj-attribute name="revision" type="int" db-attribute-path="revision"/>
+		<obj-attribute name="seatsLayout" type="java.lang.Integer[]" db-attribute-path="seats_layout"/>
+		<obj-attribute name="updatedAt" type="java.time.LocalDateTime" db-attribute-path="updated_at"/>
+		<obj-attribute name="updatedBy" type="java.lang.String" db-attribute-path="updated_by"/>
+	</obj-entity>
+	<obj-entity name="Registration" className="com.github.vkuzel.orm_frameworks_demo.cayenne.domain.Registration" dbEntityName="registrations">
+		<obj-attribute name="registrationNumber" type="java.lang.String" db-attribute-path="registration_number"/>
+	</obj-entity>
+	<db-relationship name="registrationss" source="operators" target="registrations" toMany="true">
+		<db-attribute-pair source="id" target="operator_id"/>
+	</db-relationship>
+	<db-relationship name="registrationss" source="planes" target="registrations" toMany="true">
+		<db-attribute-pair source="id" target="plane_id"/>
+	</db-relationship>
+	<db-relationship name="operator" source="registrations" target="operators" toMany="false">
+		<db-attribute-pair source="operator_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="plane" source="registrations" target="planes" toMany="false">
+		<db-attribute-pair source="plane_id" target="id"/>
+	</db-relationship>
+	<obj-relationship name="registrations" source="Operator" target="Registration" deleteRule="Deny" db-relationship-path="registrationss"/>
+	<obj-relationship name="registrations" source="Plane" target="Registration" deleteRule="Deny" db-relationship-path="registrationss"/>
+	<obj-relationship name="operator" source="Registration" target="Operator" deleteRule="Nullify" db-relationship-path="operator"/>
+	<obj-relationship name="plane" source="Registration" target="Plane" deleteRule="Nullify" db-relationship-path="plane"/>
+</data-map>
