@@ -13,6 +13,7 @@ buildscript {
 
 
 import org.jooq.util.GenerationTool
+import org.jooq.util.jaxb.Configuration
 
 task(generateDomainObjects) << {
     Configuration configuration = loadJooqConfiguration()
