@@ -29,6 +29,7 @@ Don't forget to explore the code.
 * [Fjorm](https://github.com/mladenadamovic/fjorm/tree/master)
 * [Ebean](http://ebean-orm.github.io)
 * [ActiveJDBC](http://javalite.io/activejdbc)
+* [Carbonado](https://github.com/Carbonado/Carbonado)
 
 ## Excluded frameworks
 
@@ -44,7 +45,6 @@ All non-free projects are automatically excluded from this demo. Following proje
 * [Speedo](http://speedo.ow2.org) - Last commit from 2005.
 * [TJDO Project](http://tjdo.sourceforge.net) - It has CVS repository with last commit from 2008.
 * [JPOX](http://www.jpox.org) - Last version on SourceForge is from 2013.
-* [Carbonado](https://github.com/Carbonado/Carbonado) - Seems like abandoned project.
 * [Speedment](http://www.speedment.com) - In current version 2.3.5 Speedment does not support transactions.
 
 ## Tested features
