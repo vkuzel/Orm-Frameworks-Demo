@@ -1,8 +1,9 @@
 package com.github.vkuzel.orm_frameworks_demo.transport;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class DetailPlaneDimensions {
+public class DetailPlaneDimensions implements Serializable {
 
     private final BigDecimal lengthMeters;
     private final BigDecimal wingspanMeters;

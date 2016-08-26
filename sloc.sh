@@ -8,3 +8,5 @@ echo MyBatis
 cloc mybatis --include-lang=Java --exclude-dir=generated
 echo Cayenne
 cloc cayenne --include-lang=Java --exclude-dir=generated
+echo OpenJPA
+cloc openjpa --include-lang=Java

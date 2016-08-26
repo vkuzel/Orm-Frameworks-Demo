@@ -21,10 +21,10 @@ Don't forget to explore the code.
 * [JOOQ](#jooq)
 * [MyBatis](#mybatis)
 * [Apache Cayenne](#apache-cayenne)
+* [Apache OpenJPA](#apache-openjpa)
 
 ### TODO
 
-* [Apache OpenJPA](http://openjpa.apache.org)
 * [DataNucleus Access Platform](http://www.datanucleus.org)
 * [Fjorm](https://github.com/mladenadamovic/fjorm/tree/master)
 * [Ebean](http://ebean-orm.github.io)
@@ -87,7 +87,7 @@ Before you start generate domain classes by running `gradle generateDomainObject
 #### Cons
 
 * Generated POJOs with UDT are not working because of https://github.com/jOOQ/jOOQ/issues/5401
-* Generated DAO.insert() method is not useable because it does not return generated ID. So I decided to use DAO at all. See https://github.com/jOOQ/jOOQ/issues/2536
+* Generated DAO.insert() method is not useable because it does not return generated ID. So I decided not to use DAO at all. See https://github.com/jOOQ/jOOQ/issues/2536
 * Custom naming strategy that turns plural table names to singulars breaks a record's column names. So its unusable.
 * No built-in support for auditing.
 
@@ -116,3 +116,11 @@ Before you start generate domain classes by running `gradle generateDomainObject
 * Custom transaction management. Transactions had to be commited explicitly. Maybe it's because I couldn't figure out how to integrate it with JTA.
 * Code is polluted by ObjectContext instances.
 * Modeler can't start from Gradle task.
+
+### [Apache OpenJPA](http://openjpa.apache.org)
+
+#### Cons
+
+* Quite harder to integrate with Spring Boot application than Hibernate due to Spring Boot's startes.
+* It has quite steep learning curve. I was quite fighting with integration of entity enhancement into gradle build script or with mapping of UDTs to Java classes.
+* Lots of boilerplate code.
