@@ -16,6 +16,8 @@ public interface AirlinesService {
 
     PlaneDetail updatePlaneTransactionalThatThrowsException(PlaneDetail plane);
 
+    PlaneDetail findPlaneByName(String name);
+
     OperatorDetail findOperatorByName(String languageCode, String name);
 
     Page<OperatorDetail> findAllOperators(String languageCode, Pageable pageable);

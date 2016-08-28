@@ -64,6 +64,14 @@ public class JooqAirlinesService implements AirlinesService {
     }
 
     @Override
+    public PlaneDetail findPlaneByName(String name) {
+        PlanesRecord planesRecord = dsl.selectFrom(Planes.PLANES)
+                .where("name = ?", name)
+                .fetchOne();
+        return planesRecord != null ? planesRecord.into(PlaneDetail.class) : null;
+    }
+
+    @Override
     public OperatorDetail findOperatorByName(String languageCode, String name) {
         OperatorsRecord operatorsRecord = dsl.selectFrom(Operators.OPERATORS)
                 .where("name ->> ? = ?", languageCode, name)

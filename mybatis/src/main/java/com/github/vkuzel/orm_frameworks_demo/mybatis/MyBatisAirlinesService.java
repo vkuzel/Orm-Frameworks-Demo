@@ -7,10 +7,7 @@ import com.github.vkuzel.orm_frameworks_demo.mybatis.dao.ExtendedOperatorMapper;
 import com.github.vkuzel.orm_frameworks_demo.mybatis.dao.ExtendedRegistrationMapper;
 import com.github.vkuzel.orm_frameworks_demo.mybatis.dao.ExtendedRegistrationMapper.RegisterNewPlaneParameters;
 import com.github.vkuzel.orm_frameworks_demo.mybatis.dao.PlaneMapper;
-import com.github.vkuzel.orm_frameworks_demo.mybatis.model.Operator;
-import com.github.vkuzel.orm_frameworks_demo.mybatis.model.OperatorExample;
-import com.github.vkuzel.orm_frameworks_demo.mybatis.model.Registration;
-import com.github.vkuzel.orm_frameworks_demo.mybatis.model.RegistrationExample;
+import com.github.vkuzel.orm_frameworks_demo.mybatis.model.*;
 import com.github.vkuzel.orm_frameworks_demo.service.AirlinesService;
 import com.github.vkuzel.orm_frameworks_demo.transport.OperatorDetail;
 import com.github.vkuzel.orm_frameworks_demo.transport.PlaneDetail;
@@ -66,6 +63,19 @@ public class MyBatisAirlinesService implements AirlinesService {
         PlaneWrapper planeWrapper = (PlaneWrapper) plane;
         planeMapper.updateByPrimaryKey(planeWrapper);
         throw new IllegalStateException();
+    }
+
+    @Override
+    public PlaneDetail findPlaneByName(String name) {
+        PlaneExample planeExample = new PlaneExample();
+        planeExample.createCriteria().andNameEqualTo(name);
+
+        List<Plane> planes = planeMapper.selectByExample(planeExample);
+        if (!planes.isEmpty()) {
+            return new PlaneWrapper(planes.get(0));
+        }
+
+        return null;
     }
 
     @Override

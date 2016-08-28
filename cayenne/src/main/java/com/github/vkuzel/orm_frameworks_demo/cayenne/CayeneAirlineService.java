@@ -67,6 +67,13 @@ public class CayeneAirlineService implements AirlinesService {
     }
 
     @Override
+    public PlaneDetail findPlaneByName(String name) {
+        Expression expression = Plane.NAME.eq(name);
+        Select<Plane> planeSelect = new SelectQuery<>(Plane.class, expression);
+        return createContext().selectOne(planeSelect);
+    }
+
+    @Override
     public OperatorDetail findOperatorByName(String languageCode, String name) {
         // Because of "special" column name "name ->> 'en'" I can't use
         // Cayenne's query builder and I have to write custom query.

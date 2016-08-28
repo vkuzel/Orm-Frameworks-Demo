@@ -15,3 +15,7 @@ cd ..
 cd cayenne
 gradle clean generateDomainObjects bootRun
 cd ..
+
+cd openjpa
+gradle clean enhanceJpaEntities bootRun
+cd ..

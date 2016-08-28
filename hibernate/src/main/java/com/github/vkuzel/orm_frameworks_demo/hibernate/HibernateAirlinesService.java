@@ -63,6 +63,11 @@ public class HibernateAirlinesService implements AirlinesService {
     }
 
     @Override
+    public PlaneDetail findPlaneByName(String name) {
+        return planeRepository.findByName(name);
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public OperatorDetail findOperatorByName(String languageCode, String name) {
         return operatorRepository.findByName(languageCode, name);

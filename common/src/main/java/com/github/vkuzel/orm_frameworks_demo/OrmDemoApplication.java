@@ -71,6 +71,7 @@ public class OrmDemoApplication implements CommandLineRunner {
             exception = true;
         }
         assertTrue(exception);
+        assertNull(airlinesService.findPlaneByName("Random"));
 
         OperatorDetail operator = airlinesService.findOperatorByName("en", "Lufthansa");
         assertNotNull(operator);

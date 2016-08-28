@@ -58,6 +58,11 @@ public class OpenJpaAirlinesService implements AirlinesService {
     }
 
     @Override
+    public PlaneDetail findPlaneByName(String name) {
+        return planeRepository.findByName(name);
+    }
+
+    @Override
     public OperatorDetail findOperatorByName(String languageCode, String name) {
         return operatorRepository.findByName(languageCode, name);
     }
