@@ -1,13 +1,4 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.apache.openjpa:openjpa:2.4.1'
-    }
-}
-
-// Call this task from your IDE after compilation.
+// Call this task from your IDE after project compilation.
 task enhanceJpaEntities(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = 'com.github.vkuzel.orm_frameworks_demo.openjpa.EntityEnhancer'
