@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ClassEnhancer {
+public class EntityEnhancer {
 
     private static final PathMatchingResourcePatternResolver RESOURCE_RESOLVER = new PathMatchingResourcePatternResolver();
 
@@ -40,7 +40,7 @@ public class ClassEnhancer {
 
         MetaDataRepository metaDataRepository = configuration.newMetaDataRepositoryInstance();
 
-        PCEnhancer.run(configuration, classesToEnhance, flags, metaDataRepository, null, ClassEnhancer.class.getClassLoader());
+        PCEnhancer.run(configuration, classesToEnhance, flags, metaDataRepository, null, EntityEnhancer.class.getClassLoader());
     }
 
     private static String[] findEntityClasses(String packageToScan) throws IOException {

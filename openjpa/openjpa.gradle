@@ -10,7 +10,7 @@ buildscript {
 // Call this task from your IDE after compilation.
 task enhanceJpaEntities(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
-    main = 'com.github.vkuzel.orm_frameworks_demo.openjpa.ClassEnhancer'
+    main = 'com.github.vkuzel.orm_frameworks_demo.openjpa.EntityEnhancer'
     args sourceSets.main.output.classesDir, 'com.github.vkuzel.orm_frameworks_demo.openjpa.domain'
 }
 
