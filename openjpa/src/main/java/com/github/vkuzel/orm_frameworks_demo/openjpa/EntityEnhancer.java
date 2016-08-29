@@ -6,22 +6,26 @@ import org.apache.openjpa.enhance.PCEnhancer;
 import org.apache.openjpa.meta.MetaDataRepository;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.core.type.classreading.CachingMetadataReaderFactory;
+import org.springframework.core.type.classreading.MetadataReader;
+import org.springframework.core.type.classreading.MetadataReaderFactory;
+import org.springframework.util.ClassUtils;
 
 import javax.persistence.Entity;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntityEnhancer {
 
     private static final PathMatchingResourcePatternResolver RESOURCE_RESOLVER = new PathMatchingResourcePatternResolver();
 
-    private static final Predicate<Class> ENTITY_CLASS_FILTER = aClass -> aClass.isAnnotationPresent(Entity.class);
+    private static final MetadataReaderFactory METADATA_READER_FACTORY = new CachingMetadataReaderFactory(RESOURCE_RESOLVER);
 
     public static void main(String[] args) throws IOException {
-        Validate.isTrue(args.length > 1, "Expected two arguments <output_directory> <package_to_scan>!");
+        Validate.isTrue(args.length == 2, "Expected two arguments <output_directory> <package_to_scan>!");
         File outputDir = new File(args[0]);
         Validate.isTrue(outputDir.exists(), "Output directory " + outputDir.getAbsolutePath() + " does not exist!");
         String[] classesToEnhance = findEntityClasses(args[1]);
@@ -44,22 +48,22 @@ public class EntityEnhancer {
     }
 
     private static String[] findEntityClasses(String packageToScan) throws IOException {
-        String pattern = "classpath*:" + packageToScan.replace(".", "/") + "/*.class";
+        String pattern = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX
+                + ClassUtils.convertClassNameToResourcePath(packageToScan) + "**/*.class";
         Resource[] resources = RESOURCE_RESOLVER.getResources(pattern);
 
-        return Arrays.asList(resources).stream()
-                .map(r -> mapToClass(packageToScan, r)).filter(ENTITY_CLASS_FILTER).map(Class::getName)
-                .collect(Collectors.toList()).toArray(new String[] {});
-    }
-
-    private static Class mapToClass(String packageToScan, Resource resource) {
-        try {
-            String resourceUri = resource.getURI().toString();
-            resourceUri = resourceUri.replace(".class", "").replace("/", ".");
-            resourceUri = resourceUri.substring(resourceUri.indexOf(packageToScan));
-            return Class.forName(resourceUri);
-        } catch (IOException | ClassNotFoundException e) {
-            throw new IllegalStateException(e);
+        List<String> entityClasses = new ArrayList<>();
+        for (Resource resource : resources) {
+            if (resource.isReadable()) {
+                MetadataReader metadataReader = METADATA_READER_FACTORY.getMetadataReader(resource);
+                if (metadataReader.getAnnotationMetadata().hasAnnotation(Entity.class.getName())) {
+                    entityClasses.add(metadataReader.getClassMetadata().getClassName());
+                }
+            } else {
+                throw new IllegalStateException("Resource " + resource.getFilename() + " is not readable!");
+            }
         }
+
+        return entityClasses.toArray(new String[]{});
     }
 }
