@@ -1,5 +1,6 @@
 package com.github.vkuzel.orm_frameworks_demo.openjpa.domain;
 
+import com.github.vkuzel.orm_frameworks_demo.openjpa.audit.AuditableEntity;
 import com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneDimensions;
 import com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType;
 import com.github.vkuzel.orm_frameworks_demo.transport.PlaneDetail;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Auditable
 @Entity(name = "planes")
-public class Plane implements PlaneDetail {
+public class Plane implements PlaneDetail, AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "planes_seq_gen")

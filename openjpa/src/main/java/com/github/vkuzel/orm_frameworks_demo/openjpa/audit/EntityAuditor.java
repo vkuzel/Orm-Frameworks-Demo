@@ -6,8 +6,6 @@ import org.apache.openjpa.kernel.Audited;
 import org.apache.openjpa.kernel.Broker;
 import org.apache.openjpa.lib.conf.Configuration;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.util.Collection;
 
@@ -19,36 +17,18 @@ public class EntityAuditor implements Auditor {
     }
 
     private void addOnCreateInfo(Object entity) {
-        for (Method method : entity.getClass().getDeclaredMethods()) {
-            try {
-                switch (method.getName()) {
-                    case "setCreatedAt":
-                        method.invoke(entity, LocalDateTime.now());
-                        break;
-                    case "setCreatedBy":
-                        method.invoke(entity, UsernameProvider.getUsername());
-                        break;
-                }
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                throw new IllegalArgumentException(e);
-            }
+        if (entity instanceof AuditableEntity) {
+            AuditableEntity auditableEntity = (AuditableEntity) entity;
+            auditableEntity.setCreatedAt(LocalDateTime.now());
+            auditableEntity.setCreatedBy(UsernameProvider.getUsername());
         }
     }
 
     private void addOnUpdateAuditInfo(Object entity) {
-        for (Method method : entity.getClass().getDeclaredMethods()) {
-            try {
-                switch (method.getName()) {
-                    case "setUpdatedAt":
-                        method.invoke(entity, LocalDateTime.now());
-                        break;
-                    case "setUpdatedBy":
-                        method.invoke(entity, UsernameProvider.getUsername());
-                        break;
-                }
-            } catch (IllegalAccessException | InvocationTargetException/* | NoSuchMethodException*/ e) {
-                throw new IllegalArgumentException(e);
-            }
+        if (entity instanceof AuditableEntity) {
+            AuditableEntity auditableEntity = (AuditableEntity) entity;
+            auditableEntity.setUpdatedAt(LocalDateTime.now());
+            auditableEntity.setUpdatedBy(UsernameProvider.getUsername());
         }
     }
 
