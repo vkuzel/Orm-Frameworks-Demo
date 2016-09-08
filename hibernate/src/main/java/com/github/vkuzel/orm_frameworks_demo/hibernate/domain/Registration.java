@@ -5,6 +5,12 @@ import com.github.vkuzel.orm_frameworks_demo.transport.RegistrationDetail;
 import javax.persistence.*;
 
 @Entity(name = "registrations")
+@NamedStoredProcedureQuery(name = "registerNewPlane", procedureName = "register_new_plane", parameters = {
+        @StoredProcedureParameter(name = "plane_id", type = Long.class, mode = ParameterMode.IN),
+        @StoredProcedureParameter(name = "operator_id", type = Long.class, mode = ParameterMode.IN),
+        @StoredProcedureParameter(name = "registration_number", type = String.class, mode = ParameterMode.IN),
+        @StoredProcedureParameter(name = "registration_id", type = Long.class, mode = ParameterMode.OUT)
+})
 public class Registration implements RegistrationDetail {
 
     @Id

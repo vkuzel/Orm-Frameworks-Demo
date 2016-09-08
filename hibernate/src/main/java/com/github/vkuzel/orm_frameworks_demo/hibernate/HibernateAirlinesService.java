@@ -2,17 +2,14 @@ package com.github.vkuzel.orm_frameworks_demo.hibernate;
 
 import com.github.vkuzel.orm_frameworks_demo.hibernate.domain.Operator;
 import com.github.vkuzel.orm_frameworks_demo.hibernate.domain.Plane;
-import com.github.vkuzel.orm_frameworks_demo.hibernate.domain.Registration;
 import com.github.vkuzel.orm_frameworks_demo.hibernate.repository.OperatorRepository;
 import com.github.vkuzel.orm_frameworks_demo.hibernate.repository.PlaneRepository;
 import com.github.vkuzel.orm_frameworks_demo.hibernate.repository.RegistrationRepository;
 import com.github.vkuzel.orm_frameworks_demo.service.AirlinesService;
 import com.github.vkuzel.orm_frameworks_demo.transport.OperatorDetail;
 import com.github.vkuzel.orm_frameworks_demo.transport.PlaneDetail;
-import com.github.vkuzel.orm_frameworks_demo.transport.PlaneSimpleDetail;
 import com.github.vkuzel.orm_frameworks_demo.transport.RegistrationDetail;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -22,9 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class HibernateAirlinesService implements AirlinesService {
@@ -118,9 +113,7 @@ public class HibernateAirlinesService implements AirlinesService {
     @Override
     @Transactional
     public RegistrationDetail registerNewPlane(PlaneDetail planeDetail, OperatorDetail operatorDetail, String registrationNumber) {
-        Plane plane = (Plane) planeDetail;
-        Operator operator = (Operator) operatorDetail;
-        long registrationId = registrationRepository.registerNewPlane(plane.getId(), operator.getId(), registrationNumber);
+        long registrationId = registrationRepository.registerNewPlane(planeDetail.getId(), operatorDetail.getId(), registrationNumber);
         return registrationRepository.findOne(registrationId);
     }
 
