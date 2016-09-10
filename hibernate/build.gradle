@@ -27,5 +27,6 @@ repositories {
 dependencies {
 	compile project(':common')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.hibernate:hibernate-java8:5.1.0.Final')
 	compile('org.postgresql:postgresql')
 }

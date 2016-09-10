@@ -29,12 +29,10 @@ public class Plane implements PlaneDetail {
     @Type(type = "com.github.vkuzel.orm_frameworks_demo.hibernate.mapping.IntArrayMapping")
     private Integer[] seatsLayout;
     @CreatedDate
-    @Type(type = "com.github.vkuzel.orm_frameworks_demo.hibernate.mapping.LocalDateTimeMapping")
     private LocalDateTime createdAt;
     @CreatedBy
     private String createdBy;
     @LastModifiedDate
-    @Type(type = "com.github.vkuzel.orm_frameworks_demo.hibernate.mapping.LocalDateTimeMapping")
     private LocalDateTime updatedAt;
     @LastModifiedBy
     private String updatedBy;
