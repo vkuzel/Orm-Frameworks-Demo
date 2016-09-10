@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<plugin id="mydomain" name="DataNucleus plug-ins" provider-name="vkuzel.github.com">
+    <extension point="org.datanucleus.store.rdbms.identifierfactory">
+        <identifierfactory name="underscore"
+                           class-name="com.github.vkuzel.orm_frameworks_demo.datanucleus.naming.UnderscoreIdentifierFactory"/>
+    </extension>
+    <extension point="org.datanucleus.java_type">
+        <java-type name="com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType" dfg="true"/>
+        <java-type name="[Ljava.lang.Integer;" dfg="true"/>
+        <java-type name="com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneDimensions" dfg="true"/>
+        <java-type name="com.fasterxml.jackson.databind.JsonNode" dfg="true"/>
+    </extension>
+    <extension point="org.datanucleus.store.rdbms.java_mapping">
+        <mapping java-type="com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType"
+                 mapping-class="com.github.vkuzel.orm_frameworks_demo.datanucleus.mapping.PlaneTypeMapping"/>
+        <mapping java-type="com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneDimensions"
+                 mapping-class="com.github.vkuzel.orm_frameworks_demo.datanucleus.mapping.PlaneDimensionsMapping"/>
+        <mapping java-type="com.fasterxml.jackson.databind.JsonNode"
+                 mapping-class="com.github.vkuzel.orm_frameworks_demo.datanucleus.mapping.JsonMapping"/>
+    </extension>
+    <extension point="org.datanucleus.store.rdbms.datastore_mapping">
+        <mapping java-type="com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType" jdbc-type="OTHER"
+                 sql-type="plane_type" default="true"
+                 rdbms-mapping-class="com.github.vkuzel.orm_frameworks_demo.datanucleus.mapping.PlaneTypeRDBMSMapping">
+            <includes vendor-id="postgresql"/>
+        </mapping>
+        <mapping java-type="[Ljava.lang.Integer;" jdbc-type="ARRAY" sql-type="INTEGER[]" default="true"
+                 rdbms-mapping-class="com.github.vkuzel.orm_frameworks_demo.datanucleus.mapping.IntArrayRDBMSMapping">
+            <includes vendor-id="postgresql"/>
+        </mapping>
+        <mapping java-type="com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneDimensions" jdbc-type="OTHER"
+                 sql-type="plane_dimensions" default="true"
+                 rdbms-mapping-class="com.github.vkuzel.orm_frameworks_demo.datanucleus.mapping.PlaneDimensionsRDBMSMapping">
+            <includes vendor-id="postgresql"/>
+        </mapping>
+        <mapping java-type="com.fasterxml.jackson.databind.JsonNode" jdbc-type="OTHER" sql-type="JSON" default="true"
+                 rdbms-mapping-class="com.github.vkuzel.orm_frameworks_demo.datanucleus.mapping.JsonRDBMSMapping">
+            <includes vendor-id="postgresql"/>
+        </mapping>
+    </extension>
+</plugin>
+

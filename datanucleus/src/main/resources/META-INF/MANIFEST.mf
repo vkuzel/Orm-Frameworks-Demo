@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ORM Frameworks Demo DataNucleus Plugins
+Bundle-SymbolicName: com.github.vkuzel.orm-frameworks-demo
+Bundle-Version: 1.0.0
+Bundle-Vendor: vkuzel.github.com
