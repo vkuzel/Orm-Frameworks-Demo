@@ -5,12 +5,16 @@ import com.github.vkuzel.orm_frameworks_demo.openjpa.mapping.*;
 import com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneDimensions;
 import com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType;
 import com.google.common.collect.ImmutableMap;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.vendor.AbstractJpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.jta.JtaTransactionManager;
 
+import javax.sql.DataSource;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -20,6 +24,10 @@ import java.util.stream.Collectors;
 @Configuration
 @EnableTransactionManagement
 public class PersistenceConfiguration extends JpaBaseConfiguration {
+
+    public PersistenceConfiguration(DataSource dataSource, JpaProperties jpaProperties, ObjectProvider<JtaTransactionManager> jtaTransactionManagerProvider) {
+        super(dataSource, jpaProperties, jtaTransactionManagerProvider);
+    }
 
     private static final Function<Map.Entry<Class<? extends Serializable>, Class<? extends Serializable>>, String> TO_CONFIGURATION_VALUE = e ->
             e.getKey().getName() + "=" + e.getValue().getName();

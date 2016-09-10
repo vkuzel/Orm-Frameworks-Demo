@@ -19,3 +19,7 @@ cd ..
 cd openjpa
 gradle clean enhanceJpaEntities bootRun
 cd ..
+
+cd datanucleus
+gradle clean enhanceJpaEntities bootRun
+cd ..

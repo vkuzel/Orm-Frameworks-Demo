@@ -10,3 +10,5 @@ echo Cayenne
 cloc cayenne --include-lang=Java --exclude-dir=generated
 echo OpenJPA
 cloc openjpa --include-lang=Java
+echo DataNucleus
+cloc datanucleus --include-lang=Java

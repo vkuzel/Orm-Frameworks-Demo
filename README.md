@@ -22,10 +22,10 @@ Don't forget to explore the code.
 * [MyBatis](#mybatis)
 * [Apache Cayenne](#apache-cayenne)
 * [Apache OpenJPA](#apache-openjpa)
+* [DataNucleus Access Platform](#datanucleus-access-platform)
 
 ### TODO
 
-* [DataNucleus Access Platform](http://www.datanucleus.org)
 * [Fjorm](https://github.com/mladenadamovic/fjorm/tree/master)
 * [Ebean](http://ebean-orm.github.io)
 * [ActiveJDBC](http://javalite.io/activejdbc)
@@ -121,6 +121,17 @@ Before you start generate domain classes by running `gradle generateDomainObject
 
 #### Cons
 
-* Quite harder to integrate with Spring Boot application than Hibernate due to Spring Boot's startes.
+* Quite harder to integrate with Spring Boot application than Hibernate due to Spring Boot's starters.
 * It has quite steep learning curve. I was quite fighting with integration of entity enhancement into gradle build script or with mapping of UDTs to Java classes.
 * Lots of boilerplate code.
+
+### [DataNucleus Access Platform](http://www.datanucleus.org)
+
+#### Pros
+
+* More default mappings than Hibernate. Like date type to Java8 date API, etc. Some of them can be useful.
+
+#### Cons
+
+* DataNucleus can't use it's mappings for native queries. You have to create second set of mapping for that. See Operator class.
+* Version 5.0.2 still has some todos in it's code.
