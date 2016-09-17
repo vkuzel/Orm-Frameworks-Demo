@@ -23,10 +23,10 @@ Don't forget to explore the code.
 * [Apache Cayenne](#apache-cayenne)
 * [Apache OpenJPA](#apache-openjpa)
 * [DataNucleus Access Platform](#datanucleus-access-platform)
+* [Ebean](#ebean)
 
 ### TODO
 
-* [Ebean](http://ebean-orm.github.io)
 * [ActiveJDBC](http://javalite.io/activejdbc)
 * [Carbonado](https://github.com/Carbonado/Carbonado)
 * [EclipseLink](http://www.eclipse.org/eclipselink/)
@@ -78,7 +78,7 @@ Check out the database.sql file for more details about the schema.
 
 ### [JOOQ](http://www.jooq.org)
 
-Before you start generate domain classes by running `gradle generateDomainObjects`.
+Don't forget to generate domain classes by running `gradle generateDomainObjects`.
 
 #### Pros
 
@@ -94,6 +94,8 @@ Before you start generate domain classes by running `gradle generateDomainObject
 
 ### [MyBatis](http://mybatis.org)
 
+Don't forget to generate domain classes by running `gradle generateDomainObjects`.
+
 #### Pros
 
 * Lightweight.
@@ -106,6 +108,8 @@ Before you start generate domain classes by running `gradle generateDomainObject
 * Does not recognize PostgreSQL UDTs.
 
 ### [Apache Cayenne](http://cayenne.apache.org)
+
+Don't forget to generate domain classes by running `gradle generateDomainObjects`.
 
 #### Pros
 
@@ -120,6 +124,8 @@ Before you start generate domain classes by running `gradle generateDomainObject
 
 ### [Apache OpenJPA](http://openjpa.apache.org)
 
+Don't forget to enhance compiled entities by running `gradle enhanceJpaEntities`.
+
 #### Cons
 
 * Quite harder to integrate with Spring Boot application than Hibernate due to Spring Boot's starters.
@@ -127,6 +133,8 @@ Before you start generate domain classes by running `gradle generateDomainObject
 * Lots of boilerplate code.
 
 ### [DataNucleus Access Platform](http://www.datanucleus.org)
+
+Don't forget to enhance compiled entities by running `gradle enhanceJpaEntities`.
 
 #### Pros
 
@@ -136,3 +144,16 @@ Before you start generate domain classes by running `gradle generateDomainObject
 
 * DataNucleus can't use it's mappings for native queries. You have to create second set of mapping for that. See Operator class.
 * Version 5.0.2 still has some todos in it's code.
+
+### [Ebean](http://ebean-orm.github.io)
+
+Don't forget to enhance compiled entities by running `gradle enhanceEntities`.
+
+#### Pros
+
+* Quick and intuitive implementation.
+* Flexible. Lightweight without too much boilerplate code.
+
+#### Cons
+
+* Spring integration could be a little bit better but its not that big flaw.

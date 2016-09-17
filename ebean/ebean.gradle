@@ -1,0 +1,10 @@
+// Call this task from your IDE after project compilation.
+task enhanceEntities(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.github.vkuzel.orm_frameworks_demo.ebean.EntityEnhancer'
+    args project.sourceSets.main.output.classesDir, 'com.github.vkuzel.orm_frameworks_demo.ebean.domain'
+}
+
+classes.doLast {
+    enhanceEntities.execute()
+}

@@ -1,0 +1,30 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'spring-boot'
+apply from: 'ebean.gradle'
+
+springBoot {
+	mainClass = 'com.github.vkuzel.orm_frameworks_demo.OrmDemoApplication'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile project(':common')
+	compile('org.avaje.ebean:ebean:8.1.1')
+	compile('org.avaje.ebean:ebean-agent:8.1.1')
+	compile('org.avaje.ebean:ebean-spring:7.1.2')
+	compile('org.postgresql:postgresql')
+}

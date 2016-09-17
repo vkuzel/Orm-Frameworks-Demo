@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class EntityEnhancer {
 
     private static final ClassPathScanningCandidateComponentProvider ENTITY_SCANNER;
+
     static {
         ENTITY_SCANNER = new ClassPathScanningCandidateComponentProvider(false);
         ENTITY_SCANNER.addIncludeFilter(new AnnotationTypeFilter(Entity.class));
@@ -22,8 +23,8 @@ public class EntityEnhancer {
 
     public static void main(String[] args) throws IOException {
         Validate.isTrue(args.length == 1, "Expected single argument <package_to_scan>!");
-        String pathToScan = args[0];
-        String[] classesToEnhance = findEntityClasses(pathToScan);
+        String packageToScan = args[0];
+        String[] classesToEnhance = findEntityClasses(packageToScan);
         Validate.isTrue(classesToEnhance.length > 0, "No classes to enhance has been found!");
 
         DataNucleusEnhancer enhancer = new DataNucleusEnhancer("JPA", null);
@@ -34,6 +35,6 @@ public class EntityEnhancer {
     private static String[] findEntityClasses(String packageToScan) throws IOException {
         Set<BeanDefinition> entityBeanDefinitions = ENTITY_SCANNER.findCandidateComponents(packageToScan);
         List<String> entityClasses = entityBeanDefinitions.stream().map(BeanDefinition::getBeanClassName).collect(Collectors.toList());
-       return entityClasses.toArray(new String[]{});
+        return entityClasses.toArray(new String[]{});
     }
 }
