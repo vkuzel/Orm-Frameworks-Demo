@@ -24,12 +24,11 @@ Don't forget to explore the code.
 * [Apache OpenJPA](#apache-openjpa)
 * [DataNucleus Access Platform](#datanucleus-access-platform)
 * [Ebean](#ebean)
+* [EclipseLink](#eclipselink)
 
 ### TODO
 
 * [ActiveJDBC](http://javalite.io/activejdbc)
-* [Carbonado](https://github.com/Carbonado/Carbonado)
-* [EclipseLink](http://www.eclipse.org/eclipselink/)
 
 ## Excluded frameworks
 
@@ -47,6 +46,7 @@ All non-free projects are automatically excluded from this demo. Following proje
 * [JPOX](http://www.jpox.org) - Last version on SourceForge is from 2013.
 * [Speedment](http://www.speedment.com) - In current version 2.3.5 Speedment does not support transactions.
 * [Fjorm](https://github.com/mladenadamovic/fjorm/tree/master) - Last commit is 2 years old. And it seems like the project does not support transactions.
+* [Carbonado](https://github.com/Carbonado/Carbonado) - Seems like sort of inactive project.
 
 ## Tested features
 
@@ -157,3 +157,16 @@ Don't forget to enhance compiled entities by running `gradle enhanceEntities`.
 #### Cons
 
 * Spring integration could be a little bit better but its not that big flaw.
+
+### [EclipseLink](http://www.eclipse.org/eclipselink/)
+
+To run this example from your IDE or from jar attach the runtime weaver to your JVM. `-javaagent:lib/spring-instrument-4.3.2.RELEASE.jar`
+
+#### Pros
+
+* Quite easy integration to Spring application.
+
+#### Cons
+
+* Quite lot's of boilerplate code. I think there is no reason to use EclipseLink with Spring since there's better integration with Hibernate.
+* Couldn't find better solution to map PostgreSQL UDT to Java type than JPA's converter. This leads to odd way to retrieve DataSource in array (SeatsLayout) converter.

@@ -24,6 +24,6 @@ cd datanucleus
 gradle clean enhanceJpaEntities bootRun
 cd ..
 
-cd ebean
-gradle clean enhanceEntities bootRun
+cd eclipselink
+gradle clean bootRun
 cd ..

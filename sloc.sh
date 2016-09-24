@@ -20,3 +20,6 @@ cloc datanucleus --include-lang=Java
 
 echo Ebean
 cloc ebean --include-lang=Java
+
+echo EclipseLink
+cloc eclipselink --include-lang=Java
