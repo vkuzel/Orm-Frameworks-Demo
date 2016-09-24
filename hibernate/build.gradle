@@ -1,28 +1,28 @@
 buildscript {
-	ext {
-		springBootVersion = '1.4.0.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+    ext {
+        springBootVersion = '1.4.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
 apply plugin: 'spring-boot'
 
 springBoot {
-	mainClass = 'com.github.vkuzel.orm_frameworks_demo.OrmDemoApplication'
+    mainClass = 'com.github.vkuzel.orm_frameworks_demo.OrmDemoApplication'
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	compile project(':common')
-	compile('org.springframework.boot:spring-boot-starter-data-jpa')
-	compile('org.hibernate:hibernate-java8:5.1.0.Final')
-	compile('org.postgresql:postgresql')
+    compile project(':common')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.hibernate:hibernate-java8:5.1.0.Final')
+    compile('org.postgresql:postgresql')
 }
