@@ -29,6 +29,7 @@ Don't forget to explore the code.
 ### TODO
 
 * [ActiveJDBC](http://javalite.io/activejdbc)
+* [ActiveJPA](https://github.com/activejpa/activejpa)
 
 ## Excluded frameworks
 
