@@ -1,0 +1,29 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'spring-boot'
+apply from: 'activejdbc.gradle'
+
+springBoot {
+    mainClass = 'com.github.vkuzel.orm_frameworks_demo.OrmDemoApplication'
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'http://repo.javalite.io' }
+}
+
+dependencies {
+    compile project(':common')
+    compile 'org.javalite:activejdbc:1.4.13-SNAPSHOT'
+    compile 'org.javalite:activejdbc-instrumentation:1.4.13-SNAPSHOT'
+}

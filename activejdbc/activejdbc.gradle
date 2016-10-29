@@ -1,0 +1,36 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven { url 'http://repo.javalite.io' }
+    }
+    dependencies {
+        classpath 'org.javalite:activejdbc:1.4.13-SNAPSHOT'
+        classpath 'org.javalite:activejdbc-instrumentation:1.4.13-SNAPSHOT'
+    }
+}
+
+import org.javalite.instrumentation.Instrumentation
+
+// Call this task from your IDE after project compilation.
+task(instrumentModels) << {
+    File classesDir = sourceSets.main.output.classesDir
+    if (!classesDir.exists()) {
+        classesDir.mkdirs()
+    }
+
+    Instrumentation instrumentation = new Instrumentation()
+    instrumentation.outputDirectory = classesDir.getPath()
+
+    Instrumentation.class.classLoader.addURL(classesDir.toURI().toURL())
+
+    rootProject.subprojects.each { project ->
+        classesDir = project.sourceSets.main.output.classesDir
+        Instrumentation.class.classLoader.addURL(classesDir.toURI().toURL())
+    }
+
+    instrumentation.instrument()
+}
+
+classes.doLast {
+    instrumentModels.execute()
+}

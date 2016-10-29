@@ -27,3 +27,7 @@ cd ..
 cd eclipselink
 gradle clean bootRun
 cd ..
+
+cd activejdbc
+gradle clean bootRun
+cd ..

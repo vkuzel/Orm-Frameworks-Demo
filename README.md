@@ -25,11 +25,12 @@ Don't forget to explore the code.
 * [DataNucleus Access Platform](#datanucleus-access-platform)
 * [Ebean](#ebean)
 * [EclipseLink](#eclipselink)
+* [ActiveJDBC](#activejdbc)
 
 ### TODO
 
-* [ActiveJDBC](http://javalite.io/activejdbc)
 * [ActiveJPA](https://github.com/activejpa/activejpa)
+* [Reladomo](https://github.com/goldmansachs/reladomo)
 
 ## Excluded frameworks
 
@@ -171,3 +172,17 @@ To run this example from your IDE or from jar attach the runtime weaver to your 
 
 * Quite lot's of boilerplate code. I think there is no reason to use EclipseLink with Spring since there's better integration with Hibernate.
 * Couldn't find better solution to map PostgreSQL UDT to Java type than JPA's converter. This leads to odd way to retrieve DataSource in array (SeatsLayout) converter.
+
+### [ActiveJDBC](http://javalite.io/activejdbc)
+
+Don't forget to instrument models compiled by your IDE by running `gradle instrumentModels`.
+
+#### Pros
+
+* Lightweight model classes. I had to add some adapters because of design of this example application. These are not required by ActiveJDBC.
+* Easy to use.
+
+#### Cons
+
+* Lack of better integration with Spring especially transaction management.
+* Lack of support for stored functions and procedures. 

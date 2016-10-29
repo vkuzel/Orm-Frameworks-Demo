@@ -23,3 +23,6 @@ cloc ebean --include-lang=Java
 
 echo EclipseLink
 cloc eclipselink --include-lang=Java
+
+echo ActiveJDBC
+cloc activejdbc --include-lang=Java
