@@ -37,7 +37,7 @@ All non-free projects are automatically excluded from this demo. Following proje
 
 * [IBM PureQuery](http://www.ibm.com/developerworks/downloads/im/datastudiodev/?S_TACT=105AGX01&S_CMP=LP) - Last version is from 2009.
 * [Hydrate](http://hydrate.sourceforge.net/Manual.html) - Last version is from 2006 + XML configuration.
-* [ActiveJPA](https://activejpa.org) - Last commits from 2014. Seems like there is no stable release.
+* [ActiveJPA](https://github.com/activejpa/activejpa) - Last commits from 2014. Seems like there is no stable release. Actually I tried to implement this but end up with awkward mix of Hibernate and ActiveJPA unable to use custom types.
 * [Apache Torque](https://db.apache.org/torque/torque-4.0/index.html) - DOs are generated from XML file.
 * [QuickDB ORM](https://code.google.com/archive/p/quickdb/) - Last commits from 2010. Code is accesible from Google Code Archive only.
 * [ORMLite](http://ormlite.com) - Last version from 2013.
@@ -48,7 +48,6 @@ All non-free projects are automatically excluded from this demo. Following proje
 * [Speedment](http://www.speedment.com) - In current version 2.3.5 Speedment does not support transactions.
 * [Fjorm](https://github.com/mladenadamovic/fjorm/tree/master) - Last commit is 2 years old. And it seems like the project does not support transactions.
 * [Carbonado](https://github.com/Carbonado/Carbonado) - Seems like inactive project.
-* [ActiveJPA](https://github.com/activejpa/activejpa) - I tried to implement this but end up with awkward mix of Hibernate and ActiveJPA unable to use custom types.
 
 ## Tested features
 
