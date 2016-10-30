@@ -27,10 +27,6 @@ Don't forget to explore the code.
 * [EclipseLink](#eclipselink)
 * [ActiveJDBC](#activejdbc)
 
-### TODO
-
-* [Reladomo](https://github.com/goldmansachs/reladomo)
-
 ## Excluded frameworks
 
 All non-free projects are automatically excluded from this demo. Following projects are also excluded. Usually because of long time inactivity of their authors.
@@ -48,6 +44,7 @@ All non-free projects are automatically excluded from this demo. Following proje
 * [Speedment](http://www.speedment.com) - In current version 2.3.5 Speedment does not support transactions.
 * [Fjorm](https://github.com/mladenadamovic/fjorm/tree/master) - Last commit is 2 years old. And it seems like the project does not support transactions.
 * [Carbonado](https://github.com/Carbonado/Carbonado) - Seems like inactive project.
+* [Reladomo](https://github.com/goldmansachs/reladomo) - Reladomo does not support user-defined types.
 
 ## Tested features
 
