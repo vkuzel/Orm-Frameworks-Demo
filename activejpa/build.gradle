@@ -1,0 +1,35 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'spring-boot'
+
+springBoot {
+    mainClass = 'com.github.vkuzel.orm_frameworks_demo.OrmDemoApplication'
+}
+
+bootRun {
+    // Attached entity enhancer. Don't forget to do the same when running
+    // application from your IDE or from compiled jar.
+    jvmArgs = ['-javaagent:lib/activejpa-core-0.3.0.jar']
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':common')
+    compile files('lib/activejpa-core-0.3.0.jar')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa') {
+//        exclude group: 'org.hibernate'
+    }
+}
