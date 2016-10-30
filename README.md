@@ -29,7 +29,6 @@ Don't forget to explore the code.
 
 ### TODO
 
-* [ActiveJPA](https://github.com/activejpa/activejpa)
 * [Reladomo](https://github.com/goldmansachs/reladomo)
 
 ## Excluded frameworks
@@ -48,7 +47,8 @@ All non-free projects are automatically excluded from this demo. Following proje
 * [JPOX](http://www.jpox.org) - Last version on SourceForge is from 2013.
 * [Speedment](http://www.speedment.com) - In current version 2.3.5 Speedment does not support transactions.
 * [Fjorm](https://github.com/mladenadamovic/fjorm/tree/master) - Last commit is 2 years old. And it seems like the project does not support transactions.
-* [Carbonado](https://github.com/Carbonado/Carbonado) - Seems like sort of inactive project.
+* [Carbonado](https://github.com/Carbonado/Carbonado) - Seems like inactive project.
+* [ActiveJPA](https://github.com/activejpa/activejpa) - I tried to implement this but end up with awkward mix of Hibernate and ActiveJPA unable to use custom types.
 
 ## Tested features
 
