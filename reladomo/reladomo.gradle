@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('org.apache.ant:ant:1.9.7')
+        classpath('com.goldmansachs.reladomo:reladomogen:16.0.0')
+        classpath('com.goldmansachs.reladomo:reladomo-gen-util:16.0.0')
+    }
+}
+
+import com.gs.fw.common.mithra.generator.MithraGenerator
+
+task(generateDomainObjects) << {
+    MithraGenerator generator = new MithraGenerator() {
+        public void log(String s) {
+            println(s);
+        }
+
+        public void log(String s, int i) {
+            println(s);
+        }
+    };
+
+    generator.setGeneratedDir("src/generated/java");
+    generator.setXml("src/main/resources/RelamodoClassList.xml");
+    generator.setNonGeneratedDir("src/main/java");
+    generator.setGenerateGscListMethod(true);
+    generator.execute();
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<MithraObject objectType="transactional"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:noNamespaceSchemaLocation="reladomoobject.xsd">
+
+    <PackageName>com.github.vkuzel.orm_frameworks_demo.reladomo.model</PackageName>
+    <ClassName>Plane</ClassName>
+    <DefaultTable>planes</DefaultTable>
+
+    <Attribute name="id" javaType="long" columnName="id" nullable="false" primaryKey="true"/>
+    <Attribute name="name" javaType="String" columnName="name" nullable="false" maxLength="250"/>
+    <Attribute name="dimensions" javaType="String" columnName="dimensions" nullable="false" maxLength="64"/>
+    <Attribute name="planeType" javaType="String" columnName="plane_type" nullable="false" maxLength="64"/>
+    <Attribute name="seatsLayout" javaType="String" columnName="seats_layout" nullable="false" maxLength="64"/>
+    <Attribute name="createdAt" javaType="Timestamp" columnName="created_at" nullable="false"/>
+    <Attribute name="createdBy" javaType="String" columnName="created_by" nullable="false" maxLength="250"/>
+    <Attribute name="updatedAt" javaType="Timestamp" columnName="updated_at"/>
+    <Attribute name="updatedBy" javaType="String" columnName="updated_by" maxLength="250"/>
+    <Attribute name="revision" javaType="int" columnName="revision" nullable="false"/>
+</MithraObject>

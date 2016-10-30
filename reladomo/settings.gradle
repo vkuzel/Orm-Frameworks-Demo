@@ -1,0 +1,5 @@
+include 'common'
+
+rootProject.children.each { project ->
+    project.projectDir = new File(settingsDir, sprintf("../%s", project.name))
+}
