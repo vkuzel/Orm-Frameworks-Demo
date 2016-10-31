@@ -27,6 +27,10 @@ Don't forget to explore the code.
 * [EclipseLink](#eclipselink)
 * [ActiveJDBC](#activejdbc)
 
+TODO
+
+* [Exposed](https://github.com/JetBrains/Exposed)
+
 ## Excluded frameworks
 
 All non-free projects are automatically excluded from this demo. Following projects are also excluded. Usually because of long time inactivity of their authors.
