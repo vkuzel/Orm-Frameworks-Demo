@@ -25,5 +25,4 @@ repositories {
 dependencies {
     compile project(':common')
     compile 'org.javalite:activejdbc:1.4.13-SNAPSHOT'
-    compile 'org.javalite:activejdbc-instrumentation:1.4.13-SNAPSHOT'
 }
