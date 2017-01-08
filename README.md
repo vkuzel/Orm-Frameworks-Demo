@@ -1,6 +1,6 @@
 # ORM Frameworks Demo
 
-The goal of this project is to show how hard it is to use [PostgreSQL extra features (JSON, custom types, etc.)](#tested-features) in various [ORM frameworks](#frameworks).
+The goal of this project is to show how hard it is to use [PostgreSQL extra features (JSON, custom types, etc.)](#tested-features) in various [ORM frameworks](#implemented-frameworks).
 
 There is one root project for each ORM.
 Each project is implementation of `AirilinesService` stored in common module.
@@ -11,9 +11,9 @@ Each project is implementation of `AirilinesService` stored in common module.
 1. Install the [Gradle](http://gradle.org) and [PostgreSQL](https://www.postgresql.org) on your machine.
  To count SLOC install the [CLOC](https://github.com/AlDanial/cloc).
 2. Initialize the database by executing `initialize.sql` and then `database.sql` scripts.
-3. Execute `run.sh` to run all ORM implementations. Application cleans all mess in database on each run.
+3. Execute `run.sh` to run all ORM implementations. Application cleans database automatically.
 
-Don't forget to explore the code.
+Check out the implementation.
 
 ## Implemented frameworks
 
@@ -26,10 +26,6 @@ Don't forget to explore the code.
 * [Ebean](#ebean)
 * [EclipseLink](#eclipselink)
 * [ActiveJDBC](#activejdbc)
-
-TODO
-
-* [Exposed](https://github.com/JetBrains/Exposed)
 
 ## Excluded frameworks
 
@@ -49,6 +45,7 @@ All non-free projects are automatically excluded from this demo. Following proje
 * [Fjorm](https://github.com/mladenadamovic/fjorm/tree/master) - Last commit is 2 years old. And it seems like the project does not support transactions.
 * [Carbonado](https://github.com/Carbonado/Carbonado) - Seems like inactive project.
 * [Reladomo](https://github.com/goldmansachs/reladomo) - Reladomo does not support user-defined types.
+* [Exposed](https://github.com/JetBrains/Exposed) - It is quite complicated to call Exposed's Kotlin methods from java so I've decided to skip it.
 
 ## Tested features
 
@@ -186,3 +183,21 @@ Don't forget to instrument models compiled by your IDE by running `gradle instru
 
 * Lack of better integration with Spring especially transaction management.
 * Lack of support for stored functions and procedures. 
+
+## SLOC
+
+This is not very representative information since some frameworks generates domain classes, some of them needed converter class implementation, that wouldn't be necessary in real world application, etc.
+
+At least this gives you a feel of magnitude of each implementation.
+
+ORM | SLOC
+--- | ---
+[Spring Data JPA/Hibernate](#spring-data-jpahibernate) | 689
+[JOOQ](#jooq) | 526
+[MyBatis](#mybatis) | 473
+[Apache Cayenne](#apache-cayenne) | 535
+[Apache OpenJPA](#apache-openjpa) | 795
+[DataNucleus Access Platform](#datanucleus-access-platform) | 774
+[Ebean](#ebean) | 527
+[EclipseLink](#eclipselink) | 624
+[ActiveJDBC](#activejdbc) | 553
