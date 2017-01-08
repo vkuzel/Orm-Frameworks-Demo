@@ -31,8 +31,12 @@ import java.util.List;
 @Service
 public class JooqAirlinesService implements AirlinesService {
 
+    private final DSLContext dsl;
+
     @Autowired
-    DSLContext dsl;
+    public JooqAirlinesService(DSLContext dsl) {
+        this.dsl = dsl;
+    }
 
     @Override
     public PlaneDetail newPlaneDetailInstance() {

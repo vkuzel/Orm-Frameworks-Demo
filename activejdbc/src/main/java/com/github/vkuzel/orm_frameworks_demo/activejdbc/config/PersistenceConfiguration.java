@@ -14,8 +14,12 @@ import javax.sql.DataSource;
 @Configuration
 public class PersistenceConfiguration {
 
+    private final DataSource dataSource;
+
     @Autowired
-    private DataSource dataSource;
+    public PersistenceConfiguration(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @PostConstruct
     public void openConnection() {

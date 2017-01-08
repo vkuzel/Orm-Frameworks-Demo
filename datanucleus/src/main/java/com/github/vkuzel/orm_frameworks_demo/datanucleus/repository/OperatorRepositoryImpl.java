@@ -9,8 +9,12 @@ import java.util.List;
 
 public class OperatorRepositoryImpl implements OperatorFinder {
 
+    private final EntityManager entityManager;
+
     @Autowired
-    private EntityManager entityManager;
+    public OperatorRepositoryImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public Operator findByName(String languageCode, String name) {

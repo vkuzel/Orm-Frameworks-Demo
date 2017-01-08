@@ -24,14 +24,16 @@ import java.util.stream.Collectors;
 @Service
 public class EclipseLinkAirlinesService implements AirlinesService {
 
-    @Autowired
-    private PlaneRepository planeRepository;
+    private final PlaneRepository planeRepository;
+    private final OperatorRepository operatorRepository;
+    private final RegistrationRepository registrationRepository;
 
     @Autowired
-    private OperatorRepository operatorRepository;
-
-    @Autowired
-    private RegistrationRepository registrationRepository;
+    public EclipseLinkAirlinesService(PlaneRepository planeRepository, OperatorRepository operatorRepository, RegistrationRepository registrationRepository) {
+        this.planeRepository = planeRepository;
+        this.operatorRepository = operatorRepository;
+        this.registrationRepository = registrationRepository;
+    }
 
     @Override
     public PlaneDetail newPlaneDetailInstance() {

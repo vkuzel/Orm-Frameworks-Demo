@@ -27,14 +27,16 @@ import java.util.stream.Collectors;
 @Service
 public class MyBatisAirlinesService implements AirlinesService {
 
-    @Autowired
-    private PlaneMapper planeMapper;
+    private final PlaneMapper planeMapper;
+    private final ExtendedOperatorMapper operatorMapper;
+    private final ExtendedRegistrationMapper registrationMapper;
 
     @Autowired
-    private ExtendedOperatorMapper operatorMapper;
-
-    @Autowired
-    private ExtendedRegistrationMapper registrationMapper;
+    public MyBatisAirlinesService(PlaneMapper planeMapper, ExtendedOperatorMapper operatorMapper, ExtendedRegistrationMapper registrationMapper) {
+        this.planeMapper = planeMapper;
+        this.operatorMapper = operatorMapper;
+        this.registrationMapper = registrationMapper;
+    }
 
     @Override
     public PlaneDetail newPlaneDetailInstance() {

@@ -26,14 +26,17 @@ public class OrmDemoApplication implements CommandLineRunner {
 
     private static final PathMatchingResourcePatternResolver RESOURCE_RESOLVER = new PathMatchingResourcePatternResolver();
 
-    @Autowired
-    private AirlinesService airlinesService;
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final AirlinesService airlinesService;
+    private final JdbcTemplate jdbcTemplate;
 
     public static void main(String[] args) {
         SpringApplication.run(OrmDemoApplication.class, args);
+    }
+
+    @Autowired
+    public OrmDemoApplication(AirlinesService airlinesService, JdbcTemplate jdbcTemplate) {
+        this.airlinesService = airlinesService;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override

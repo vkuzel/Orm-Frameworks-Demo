@@ -25,8 +25,12 @@ import java.util.stream.Collectors;
 @Service
 public class EbeanAirlinesService implements AirlinesService {
 
+    private final EbeanServer ebeanServer;
+
     @Autowired
-    private EbeanServer ebeanServer;
+    public EbeanAirlinesService(EbeanServer ebeanServer) {
+        this.ebeanServer = ebeanServer;
+    }
 
     @Override
     public PlaneDetail newPlaneDetailInstance() {

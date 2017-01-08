@@ -7,8 +7,12 @@ import javax.persistence.Query;
 
 public class RegistrationRepositoryImpl implements PlaneRegistrant {
 
+    private final EntityManager entityManager;
+
     @Autowired
-    private EntityManager entityManager;
+    public RegistrationRepositoryImpl(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public long registerNewPlane(long planeId, long operatorId, String registrationNumber) {

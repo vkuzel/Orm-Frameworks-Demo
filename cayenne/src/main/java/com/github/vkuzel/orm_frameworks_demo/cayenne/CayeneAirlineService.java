@@ -29,11 +29,14 @@ import java.util.stream.Collectors;
 @Service
 public class CayeneAirlineService implements AirlinesService {
 
-    @Autowired
-    private CayenneContextExecutor cayenneContextExecutor;
+    private final CayenneContextExecutor cayenneContextExecutor;
+    private final ServerRuntime serverRuntime;
 
     @Autowired
-    ServerRuntime serverRuntime;
+    public CayeneAirlineService(CayenneContextExecutor cayenneContextExecutor, ServerRuntime serverRuntime) {
+        this.cayenneContextExecutor = cayenneContextExecutor;
+        this.serverRuntime = serverRuntime;
+    }
 
     private ObjectContext createContext() {
         return serverRuntime.newContext();

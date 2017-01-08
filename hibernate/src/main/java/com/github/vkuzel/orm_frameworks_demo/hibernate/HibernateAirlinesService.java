@@ -24,14 +24,16 @@ import java.util.stream.Collectors;
 @Service
 public class HibernateAirlinesService implements AirlinesService {
 
-    @Autowired
-    PlaneRepository planeRepository;
+    private final PlaneRepository planeRepository;
+    private final OperatorRepository operatorRepository;
+    private final RegistrationRepository registrationRepository;
 
     @Autowired
-    OperatorRepository operatorRepository;
-
-    @Autowired
-    RegistrationRepository registrationRepository;
+    public HibernateAirlinesService(PlaneRepository planeRepository, OperatorRepository operatorRepository, RegistrationRepository registrationRepository) {
+        this.planeRepository = planeRepository;
+        this.operatorRepository = operatorRepository;
+        this.registrationRepository = registrationRepository;
+    }
 
     @Override
     public PlaneDetail newPlaneDetailInstance() {
