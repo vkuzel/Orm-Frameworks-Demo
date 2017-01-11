@@ -10,7 +10,7 @@ Each project is implementation of `AirilinesService` stored in common module.
 
 1. Install the [Gradle](http://gradle.org) and [PostgreSQL](https://www.postgresql.org) on your machine.
  To count SLOC install the [CLOC](https://github.com/AlDanial/cloc).
-2. Initialize the database by executing `initialize.sql` and then `database.sql` scripts.
+2. Initialize the database by executing `create_database.sql` script.
 3. Execute `run.sh` to run all ORM implementations. Application cleans database automatically.
 
 Check out the implementation.

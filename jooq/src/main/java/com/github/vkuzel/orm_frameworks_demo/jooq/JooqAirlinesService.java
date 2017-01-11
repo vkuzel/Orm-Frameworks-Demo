@@ -124,7 +124,7 @@ public class JooqAirlinesService implements AirlinesService {
 
         registerNewPlane.execute(dsl.configuration());
 
-        long registrationId = registerNewPlane.getRegistrationId();
+        long registrationId = registerNewPlane.getRegistrationid();
 
         RegistrationsRecord registrationsRecord = dsl.selectFrom(Registrations.REGISTRATIONS)
                 .where(Registrations.REGISTRATIONS.ID.equal(registrationId))
