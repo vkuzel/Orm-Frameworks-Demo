@@ -17,7 +17,7 @@ public class Plane implements PlaneDetail, Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "planes_seq_gen")
-    @SequenceGenerator(name = "planes_seq_gen", sequenceName = "planes_id_seq")
+    @SequenceGenerator(name = "planes_seq_gen", sequenceName = "planes_id_seq", initialValue = 1, allocationSize = 1)
     private Long id;
     private String name;
     private DetailPlaneDimensions dimensions;

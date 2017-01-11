@@ -1,22 +1,16 @@
 package com.github.vkuzel.orm_frameworks_demo;
 
-import com.github.vkuzel.orm_frameworks_demo.common.Utils;
 import com.github.vkuzel.orm_frameworks_demo.service.AirlinesService;
 import com.github.vkuzel.orm_frameworks_demo.transport.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.jdbc.core.JdbcTemplate;
 
-import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -24,19 +18,15 @@ import static org.junit.Assert.*;
 @SpringBootApplication
 public class OrmDemoApplication implements CommandLineRunner {
 
-    private static final PathMatchingResourcePatternResolver RESOURCE_RESOLVER = new PathMatchingResourcePatternResolver();
-
     private final AirlinesService airlinesService;
-    private final JdbcTemplate jdbcTemplate;
 
     public static void main(String[] args) {
         SpringApplication.run(OrmDemoApplication.class, args);
     }
 
     @Autowired
-    public OrmDemoApplication(AirlinesService airlinesService, JdbcTemplate jdbcTemplate) {
+    public OrmDemoApplication(AirlinesService airlinesService) {
         this.airlinesService = airlinesService;
-        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -98,17 +88,5 @@ public class OrmDemoApplication implements CommandLineRunner {
         assertEquals((long) updatedPlane.getId(), registration.getPlaneId());
         assertEquals((long) operator.getId(), registration.getOperatorId());
         assertEquals(registrationNumber, registration.getRegistrationNumber());
-    }
-
-    @PostConstruct
-    private void initSchema() {
-        Resource schema = RESOURCE_RESOLVER.getResource("classpath:data.sql");
-        String sql = Utils.loadResourceToString(schema);
-        jdbcTemplate.execute(sql);
-        try {
-            jdbcTemplate.getDataSource().getConnection().commit();
-        } catch (SQLException e) {
-            throw new IllegalStateException(e);
-        }
     }
 }

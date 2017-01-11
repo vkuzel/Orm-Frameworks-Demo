@@ -11,7 +11,7 @@ public class Registration implements RegistrationDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "registrations_seq_gen")
-    @SequenceGenerator(name = "registrations_seq_gen", sequenceName = "registrations_id_seq")
+    @SequenceGenerator(name = "registrations_seq_gen", sequenceName = "registrations_id_seq", initialValue = 1, allocationSize = 1)
     private Long id;
     @Column(name = "plane_id")
     private long planeId;

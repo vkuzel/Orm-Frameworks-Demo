@@ -16,7 +16,7 @@ public class Operator implements OperatorDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "operators_seq_gen")
-    @SequenceGenerator(name = "operators_seq_gen", sequenceName = "operators_id_seq")
+    @SequenceGenerator(name = "operators_seq_gen", sequenceName = "operators_id_seq", initialValue = 1, allocationSize = 1)
     private Long id;
     private JsonNode name;
 
