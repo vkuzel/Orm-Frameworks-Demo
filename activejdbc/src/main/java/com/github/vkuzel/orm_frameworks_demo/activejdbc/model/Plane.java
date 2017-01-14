@@ -1,6 +1,6 @@
 package com.github.vkuzel.orm_frameworks_demo.activejdbc.model;
 
-import com.github.vkuzel.orm_frameworks_demo.activejdbc.audit.AuditModel;
+import com.github.vkuzel.orm_frameworks_demo.activejdbc.audit.AuditedModel;
 import com.github.vkuzel.orm_frameworks_demo.activejdbc.mapping.MappingUtils;
 import com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneDimensions;
 import com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType;
@@ -10,7 +10,7 @@ import org.javalite.activejdbc.annotations.VersionColumn;
 import java.time.LocalDateTime;
 
 @VersionColumn("revision")
-public class Plane extends AuditModel {
+public class Plane extends AuditedModel {
 
     private PlaneAdapter adapter = new PlaneAdapter();
 

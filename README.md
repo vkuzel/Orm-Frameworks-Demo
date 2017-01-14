@@ -9,7 +9,7 @@ Each ORM has its own root project. In each project there is an implementation of
 Following PostgreSQL features has been implemented by each project.
 
 * [JSON type](https://www.postgresql.org/docs/9.5/static/functions-json.html) column. Sorting and filtering by this column.
-* [Custom composite type](https://www.postgresql.org/docs/9.5/static/rowtypes.html) column.
+* Custom [composite type](https://www.postgresql.org/docs/9.5/static/rowtypes.html) column.
 * [Enumerated type](https://www.postgresql.org/docs/current/static/datatype-enum.html) column.
 * [Array type](https://www.postgresql.org/docs/9.5/static/arrays.html) column.
 * [Stored procedures](https://www.postgresql.org/docs/9.5/static/plpgsql.html) with OUT parameters.
@@ -28,30 +28,35 @@ Check out the `schema.sql` file for more details about the schema.
 
 ## Implemented frameworks
 
-* [Spring Data JPA/Hibernate](http://projects.spring.io/spring-data-jpa/)
-* [JOOQ](http://www.jooq.org)
-* [MyBatis](http://mybatis.org)
+* [ActiveJDBC](http://javalite.io/activejdbc)
 * [Apache Cayenne](http://cayenne.apache.org)
 * [Apache OpenJPA](http://openjpa.apache.org)
 * [DataNucleus Access Platform](http://www.datanucleus.org)
 * [Ebean](http://ebean-orm.github.io)
 * [EclipseLink](http://www.eclipse.org/eclipselink/)
-* [ActiveJDBC](http://javalite.io/activejdbc)
+* [JOOQ](http://www.jooq.org)
+* [MyBatis](http://mybatis.org)
+* [Spring Data JPA/Hibernate](http://projects.spring.io/spring-data-jpa/)
 
 ## Excluded frameworks
 
-* [IBM PureQuery](http://www.ibm.com/developerworks/downloads/im/datastudiodev/?S_TACT=105AGX01&S_CMP=LP)
-* [Hydrate](http://hydrate.sourceforge.net/Manual.html)
+### Lack of support of features
+
+* [Exposed](https://github.com/JetBrains/Exposed)
+* [Reladomo](https://github.com/goldmansachs/reladomo)
+* [Speedment](http://www.speedment.com)
+
+### Obsolete
+
 * [ActiveJPA](https://github.com/activejpa/activejpa)
 * [Apache Torque](https://db.apache.org/torque/torque-4.0/index.html)
-* [QuickDB ORM](https://code.google.com/archive/p/quickdb/)
-* [ORMLite](http://ormlite.com)
+* [Carbonado](https://github.com/Carbonado/Carbonado)
+* [Fjorm](https://github.com/mladenadamovic/fjorm/tree/master)
+* [Hydrate](http://hydrate.sourceforge.net/Manual.html)
+* [IBM PureQuery](http://www.ibm.com/developerworks/downloads/im/datastudiodev/?S_TACT=105AGX01&S_CMP=LP)
 * [JDO Instruments](http://www.jdoinstruments.org)
+* [JPOX](http://www.jpox.org)
+* [ORMLite](http://ormlite.com)
+* [QuickDB ORM](https://code.google.com/archive/p/quickdb/)
 * [Speedo](http://speedo.ow2.org)
 * [TJDO Project](http://tjdo.sourceforge.net)
-* [JPOX](http://www.jpox.org)
-* [Speedment](http://www.speedment.com)
-* [Fjorm](https://github.com/mladenadamovic/fjorm/tree/master)
-* [Carbonado](https://github.com/Carbonado/Carbonado)
-* [Reladomo](https://github.com/goldmansachs/reladomo)
-* [Exposed](https://github.com/JetBrains/Exposed)

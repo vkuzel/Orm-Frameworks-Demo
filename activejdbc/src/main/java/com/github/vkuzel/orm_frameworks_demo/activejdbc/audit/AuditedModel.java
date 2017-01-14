@@ -6,7 +6,7 @@ import org.javalite.activejdbc.ModelDelegate;
 
 import java.util.Set;
 
-public abstract class AuditModel extends Model {
+public abstract class AuditedModel extends Model {
 
     private void setAuditFields() {
         Set<String> attributeNames = ModelDelegate.attributeNames(this.getClass());
