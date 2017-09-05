@@ -4,7 +4,7 @@ The goal of this project is to show how hard it is to use [PostgreSQL extra feat
 
 ## Learn
 
-Read [the article on DZone](https://dzone.com/articles/best-java-orm-frameworks-for-postgresql).
+Read the article [Finding the Best Java ORM Framework for PostgreSQL](https://dzone.com/articles/best-java-orm-frameworks-for-postgresql) on DZone.
 
 Each ORM has its own root project. In each project there is an implementation of `AirlinesService`. Its a good place to start exploring the code.
 
