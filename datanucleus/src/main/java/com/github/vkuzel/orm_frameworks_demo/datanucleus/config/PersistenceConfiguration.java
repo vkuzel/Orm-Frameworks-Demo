@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
+import org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.vendor.AbstractJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -21,8 +22,8 @@ import java.util.Map;
 @EnableTransactionManagement
 public class PersistenceConfiguration extends JpaBaseConfiguration {
 
-    public PersistenceConfiguration(DataSource dataSource, JpaProperties jpaProperties, ObjectProvider<JtaTransactionManager> jtaTransactionManagerProvider) {
-        super(dataSource, jpaProperties, jtaTransactionManagerProvider);
+    public PersistenceConfiguration(DataSource dataSource, JpaProperties properties, ObjectProvider<JtaTransactionManager> jtaTransactionManager, ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
+        super(dataSource, properties, jtaTransactionManager, transactionManagerCustomizers);
     }
 
     @Override

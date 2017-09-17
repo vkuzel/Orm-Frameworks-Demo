@@ -3,6 +3,7 @@ package com.github.vkuzel.orm_frameworks_demo.eclipselink.conf;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
+import org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.orm.jpa.vendor.AbstractJpaVendorAdapter;
@@ -21,8 +22,8 @@ public class PersistenceConfiguration extends JpaBaseConfiguration {
 
     private static DataSource dataSource;
 
-    protected PersistenceConfiguration(DataSource dataSource, JpaProperties properties, ObjectProvider<JtaTransactionManager> jtaTransactionManagerProvider) {
-        super(dataSource, properties, jtaTransactionManagerProvider);
+    public PersistenceConfiguration(DataSource dataSource, JpaProperties properties, ObjectProvider<JtaTransactionManager> jtaTransactionManager, ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
+        super(dataSource, properties, jtaTransactionManager, transactionManagerCustomizers);
         PersistenceConfiguration.dataSource = dataSource;
     }
 

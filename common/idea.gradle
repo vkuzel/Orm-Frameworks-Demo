@@ -1,0 +1,20 @@
+apply plugin: 'idea'
+
+// Gradle 4 introduced separated compilation-output directories for each
+// language. IDEA had problems with that so IDEA 2017.2 changed output
+// directories from `build' to `out'. That is a problem in case of
+// instrumentation because the code is compiled by IDEA and then instrumented
+// by Gradle. To avoid that, following block changes IDEA's output back to
+// Gradle 3 and older compliant set of directories.
+//
+// This will (probably) not work with Gradle 4. There is also possibility that
+// in future there will be some kind of combination of IDEA and Gradle that
+// wouldn't work and following code would have to be changed.
+//
+// @see https://youtrack.jetbrains.com/issue/IDEA-175172
+idea {
+    module {
+        outputDir file('build/classes/main')
+        testOutputDir file('build/classes/test')
+    }
+}

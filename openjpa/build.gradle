@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.4.3.RELEASE'
+        springBootVersion = '1.5.7.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -10,8 +10,9 @@ buildscript {
     }
 }
 
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 apply from: 'openjpa.gradle'
+apply from: '../common/idea.gradle'
 
 springBoot {
     mainClass = 'com.github.vkuzel.orm_frameworks_demo.OrmDemoApplication'

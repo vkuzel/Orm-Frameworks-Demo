@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableMap;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
+import org.springframework.boot.autoconfigure.transaction.TransactionManagerCustomizers;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.vendor.AbstractJpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter;
@@ -25,8 +26,8 @@ import java.util.stream.Collectors;
 @EnableTransactionManagement
 public class PersistenceConfiguration extends JpaBaseConfiguration {
 
-    public PersistenceConfiguration(DataSource dataSource, JpaProperties jpaProperties, ObjectProvider<JtaTransactionManager> jtaTransactionManagerProvider) {
-        super(dataSource, jpaProperties, jtaTransactionManagerProvider);
+    public PersistenceConfiguration(DataSource dataSource, JpaProperties properties, ObjectProvider<JtaTransactionManager> jtaTransactionManager, ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
+        super(dataSource, properties, jtaTransactionManager, transactionManagerCustomizers);
     }
 
     private static final Function<Map.Entry<Class<? extends Serializable>, Class<? extends Serializable>>, String> TO_CONFIGURATION_VALUE = e ->
