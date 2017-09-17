@@ -4,9 +4,9 @@ buildscript {
     }
     dependencies {
         classpath gradleApi()
-        classpath('org.jooq:jooq:3.8.3')
-        classpath('org.jooq:jooq-meta:3.8.3')
-        classpath('org.jooq:jooq-codegen:3.8.3')
+        classpath('org.jooq:jooq:3.9.5')
+        classpath('org.jooq:jooq-meta:3.9.5')
+        classpath('org.jooq:jooq-codegen:3.9.5')
         classpath('org.postgresql:postgresql:9.4.1208.jre7')
     }
 }
