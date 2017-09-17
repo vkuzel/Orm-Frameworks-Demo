@@ -31,8 +31,5 @@ sourceSets {
 
 dependencies {
     compile project(':common')
-    compile('org.springframework.boot:spring-boot-starter-jooq') {
-        exclude group: 'org.jooq'
-    }
-    compile('org.jooq:jooq:3.8.3')
+    compile('org.springframework.boot:spring-boot-starter-jooq')
 }
