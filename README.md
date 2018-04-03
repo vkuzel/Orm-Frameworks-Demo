@@ -1,14 +1,14 @@
 # ORM Frameworks Demo
 
-The goal of this project is to show how hard it is to use [PostgreSQL extra features (JSON, custom types, etc.)](#learn) in various [ORM frameworks](#implemented-frameworks).
+The goal of this project is to show how hard is it to use [PostgreSQL extra features (JSON, custom types, etc.)](#learn) in various [ORM frameworks](#implemented-frameworks).
 
 ## Learn
 
 Read the article [Finding the Best Java ORM Framework for PostgreSQL](https://dzone.com/articles/best-java-orm-frameworks-for-postgresql) on DZone.
 
-Each ORM has its own root project. In each project there is an implementation of `AirlinesService`. Its a good place to start exploring the code.
+Each ORM has its own root project. In the project there is an implementation of `AirlinesService`. Its a good place to start exploring the code.
 
-Following PostgreSQL features has been implemented by each project.
+Following PostgreSQL features has been implemented in each project.
 
 * [JSON type](https://www.postgresql.org/docs/9.5/static/functions-json.html) column. Sorting and filtering by this column.
 * Custom [composite type](https://www.postgresql.org/docs/9.5/static/rowtypes.html) column.
