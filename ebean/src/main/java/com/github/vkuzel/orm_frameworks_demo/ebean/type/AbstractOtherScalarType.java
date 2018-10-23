@@ -1,11 +1,11 @@
 package com.github.vkuzel.orm_frameworks_demo.ebean.type;
 
-import com.avaje.ebeaninternal.server.type.DataBind;
-import com.avaje.ebeaninternal.server.type.DataReader;
-import com.avaje.ebeaninternal.server.type.ScalarTypeBase;
-import com.avaje.ebeanservice.docstore.api.mapping.DocPropertyType;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
+import io.ebeaninternal.server.type.DataBind;
+import io.ebeaninternal.server.type.DataReader;
+import io.ebeaninternal.server.type.ScalarTypeBase;
+import io.ebeanservice.docstore.api.mapping.DocPropertyType;
 
 import java.io.DataInput;
 import java.io.DataOutput;

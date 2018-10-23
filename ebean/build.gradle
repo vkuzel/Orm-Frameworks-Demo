@@ -22,10 +22,15 @@ repositories {
     mavenCentral()
 }
 
+allprojects {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 dependencies {
     compile project(':common')
-    compile('org.avaje.ebean:ebean:8.1.1')
-    compile('org.avaje.ebean:ebean-agent:8.1.1')
-    compile('org.avaje.ebean:ebean-spring:7.1.2')
+    compile('io.ebean:ebean:11.22.10')
+    compile('io.ebean:ebean-agent:11.11.1')
+    compile('io.ebean:ebean-spring-txn:11.10.4')
     compile('org.postgresql:postgresql')
 }

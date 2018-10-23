@@ -1,10 +1,10 @@
 package com.github.vkuzel.orm_frameworks_demo.ebean.domain;
 
-import com.avaje.ebean.Model;
-import com.avaje.ebean.annotation.*;
 import com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneDimensions;
 import com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType;
 import com.github.vkuzel.orm_frameworks_demo.transport.PlaneDetail;
+import io.ebean.Model;
+import io.ebean.annotation.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

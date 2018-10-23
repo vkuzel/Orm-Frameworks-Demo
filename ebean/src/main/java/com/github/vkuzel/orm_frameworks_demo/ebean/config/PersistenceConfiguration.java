@@ -1,12 +1,12 @@
 package com.github.vkuzel.orm_frameworks_demo.ebean.config;
 
-import com.avaje.ebean.EbeanServer;
-import com.avaje.ebean.EbeanServerFactory;
-import com.avaje.ebean.config.ServerConfig;
-import com.avaje.ebean.springsupport.txn.SpringAwareJdbcTransactionManager;
 import com.github.vkuzel.orm_frameworks_demo.ebean.type.PlaneDimensionsScalarType;
 import com.github.vkuzel.orm_frameworks_demo.ebean.type.PlaneTypeScalarType;
 import com.github.vkuzel.orm_frameworks_demo.service.UsernameProvider;
+import io.ebean.EbeanServer;
+import io.ebean.EbeanServerFactory;
+import io.ebean.config.ServerConfig;
+import io.ebean.spring.txn.SpringJdbcTransactionManager;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
@@ -47,7 +47,7 @@ public class PersistenceConfiguration {
                 .forEach(config::addClass);
 
         config.setDataSource(dataSource);
-        config.setExternalTransactionManager(new SpringAwareJdbcTransactionManager());
+        config.setExternalTransactionManager(new SpringJdbcTransactionManager());
 
         config.setDefaultServer(true);
         config.setRegister(true);

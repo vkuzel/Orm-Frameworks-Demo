@@ -1,11 +1,14 @@
 package com.github.vkuzel.orm_frameworks_demo.ebean.type;
 
 import com.github.vkuzel.orm_frameworks_demo.transport.DetailPlaneType;
+import io.ebeaninternal.server.type.ScalarTypeEnum;
 import org.postgresql.util.PGobject;
 
+import javax.persistence.EnumType;
 import java.sql.SQLException;
+import java.util.Set;
 
-public class PlaneTypeScalarType extends AbstractOtherScalarType<DetailPlaneType> {
+public class PlaneTypeScalarType extends AbstractOtherScalarType<DetailPlaneType> implements ScalarTypeEnum<DetailPlaneType> {
 
     public PlaneTypeScalarType() {
         super(DetailPlaneType.class);
@@ -47,5 +50,15 @@ public class PlaneTypeScalarType extends AbstractOtherScalarType<DetailPlaneType
     @Override
     public DetailPlaneType parse(String value) {
         return DetailPlaneType.valueOf(value);
+    }
+
+    @Override
+    public Set<String> getDbCheckConstraintValues() {
+        return null;
+    }
+
+    @Override
+    public boolean isCompatible(EnumType enumType) {
+        return false;
     }
 }

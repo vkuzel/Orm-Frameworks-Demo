@@ -3,21 +3,21 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.avaje.ebean:ebean:8.1.1'
-        classpath 'org.avaje.ebean:ebean-agent:8.1.1'
+        classpath 'io.ebean:ebean:11.22.10'
+        classpath 'io.ebean:ebean-agent:11.11.1'
     }
 }
 
-import com.avaje.ebean.enhance.agent.Transformer
-import com.avaje.ebean.enhance.ant.OfflineFileTransform
-import com.avaje.ebean.enhance.ant.TransformationListener
+import io.ebean.enhance.Transformer;
+import io.ebean.enhance.ant.OfflineFileTransform;
+import io.ebean.enhance.ant.TransformationListener;
 
 // Call this task from your IDE after project compilation.
 task enhanceEntities << {
     String classDir = project.sourceSets.main.output.classesDir
     String packageToScan = 'com.github.vkuzel.orm_frameworks_demo.ebean.domain'
 
-    ClassLoader classLoader = this.class.getClassLoader();
+    ClassLoader classLoader = this.class.getClassLoader()
     TransformationListener transformationListener = new TransformationListener() {
         void logEvent(String msg) {
             project.logger.info(msg)
@@ -28,10 +28,10 @@ task enhanceEntities << {
         }
     }
 
-    Transformer transformer = new Transformer(classDir, '')
+    Transformer transformer = new Transformer(classLoader, '')
     OfflineFileTransform offlineFileTransform = new OfflineFileTransform(transformer, classLoader, classDir)
-    offlineFileTransform.setListener(transformationListener);
-    offlineFileTransform.process(packageToScan);
+    offlineFileTransform.setListener(transformationListener)
+    offlineFileTransform.process(packageToScan)
 }
 
 classes.doLast {

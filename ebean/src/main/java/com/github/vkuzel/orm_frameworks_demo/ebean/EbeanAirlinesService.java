@@ -1,9 +1,5 @@
 package com.github.vkuzel.orm_frameworks_demo.ebean;
 
-import com.avaje.ebean.CallableSql;
-import com.avaje.ebean.EbeanServer;
-import com.avaje.ebean.PagedList;
-import com.avaje.ebean.Query;
 import com.github.vkuzel.orm_frameworks_demo.ebean.domain.Operator;
 import com.github.vkuzel.orm_frameworks_demo.ebean.domain.Plane;
 import com.github.vkuzel.orm_frameworks_demo.ebean.domain.Registration;
@@ -11,6 +7,13 @@ import com.github.vkuzel.orm_frameworks_demo.service.AirlinesService;
 import com.github.vkuzel.orm_frameworks_demo.transport.OperatorDetail;
 import com.github.vkuzel.orm_frameworks_demo.transport.PlaneDetail;
 import com.github.vkuzel.orm_frameworks_demo.transport.RegistrationDetail;
+import io.ebean.CallableSql;
+import io.ebean.EbeanServer;
+import io.ebean.PagedList;
+import io.ebean.Query;
+import io.ebean.enhance.Transformer;
+import io.ebean.enhance.ant.OfflineFileTransform;
+import io.ebean.enhance.ant.TransformationListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -63,7 +66,7 @@ public class EbeanAirlinesService implements AirlinesService {
         return ebeanServer.find(Plane.class)
                 .where()
                 .eq("name", name)
-                .findUnique();
+                .findOne();
     }
 
     @Override
@@ -71,7 +74,7 @@ public class EbeanAirlinesService implements AirlinesService {
         return ebeanServer.find(Operator.class)
                 .where()
                 .raw("name ->> ? = ?", languageCode, name)
-                .findUnique();
+                .findOne();
     }
 
     @Override
@@ -127,6 +130,6 @@ public class EbeanAirlinesService implements AirlinesService {
         return ebeanServer.find(Registration.class)
                 .where()
                 .eq("registration_number", registrationNumber)
-                .findUnique();
+                .findOne();
     }
 }

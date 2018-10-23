@@ -1,7 +1,7 @@
 package com.github.vkuzel.orm_frameworks_demo.ebean.domain;
 
-import com.avaje.ebean.Model;
 import com.github.vkuzel.orm_frameworks_demo.transport.RegistrationDetail;
+import io.ebean.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
