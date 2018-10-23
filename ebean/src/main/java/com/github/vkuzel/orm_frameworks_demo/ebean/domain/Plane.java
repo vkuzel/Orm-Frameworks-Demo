@@ -21,6 +21,11 @@ public class Plane extends Model implements PlaneDetail {
     private Long id;
     private String name;
     private DetailPlaneDimensions dimensions;
+    // I've implemented converter for following type, because I reuse the
+    // enum with multiple ORM implementations. In real world it is not
+    // necessary since Ebean provides handy @DbEnumValue annotation.
+    //
+    // @see http://ebean-orm.github.io/docs/mapping/extension/dbenumvalue
     private DetailPlaneType planeType;
     // With Ebean it's easier to map database arrays to a list type.
     @DbArray
