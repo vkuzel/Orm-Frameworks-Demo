@@ -38,6 +38,9 @@ public class PlaneTypeScalarType extends AbstractOtherScalarType<DetailPlaneType
         } else if (value instanceof PGobject) {
             PGobject pGobject = (PGobject) value;
             return parse(pGobject.getValue());
+        } else if (value instanceof String) {
+            String string = (String) value;
+            return parse(string);
         }
         throw new IllegalArgumentException("Unknown type " + value.getClass().getName());
     }
